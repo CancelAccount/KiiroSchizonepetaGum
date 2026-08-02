@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <!-- RecipeDef：荆芥口香糖制作配方（×1 单做） -->
+  <Kiiro_Make_SchizonepetaGum.label>制作荆芥口香糖</Kiiro_Make_SchizonepetaGum.label>
+  <Kiiro_Make_SchizonepetaGum.description>制作一片荆芥口香糖。</Kiiro_Make_SchizonepetaGum.description>
+  <Kiiro_Make_SchizonepetaGum.jobString>正在制作荆芥口香糖。</Kiiro_Make_SchizonepetaGum.jobString>
+
+  <!-- RecipeDef：荆芥口香糖制作配方（×4 批量） -->
+  <Kiiro_Make_BulkSchizonepetaGum.label>制作荆芥口香糖×4</Kiiro_Make_BulkSchizonepetaGum.label>
+  <Kiiro_Make_BulkSchizonepetaGum.description>制作一批 4 片荆芥口香糖。</Kiiro_Make_BulkSchizonepetaGum.description>
+  <Kiiro_Make_BulkSchizonepetaGum.jobString>正在批量制作荆芥口香糖。</Kiiro_Make_BulkSchizonepetaGum.jobString>
+</LanguageData>

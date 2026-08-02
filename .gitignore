@@ -1,0 +1,56 @@
+# ── Visual Studio / Rider / VSCode IDE 临时文件 ──
+.vs/
+.idea/
+.vscode/
+*.user
+*.suo
+*.userprefs
+*.swp
+*~
+
+# ── .NET / C# 编译中间产物 ──
+[Bb]in/
+[Oo]bj/
+*.dll.config
+*.pdb
+*.ilk
+*.meta
+*.exp
+*.map
+
+# ── NuGet ──
+*.nupkg
+*.snupkg
+.nuget/
+packages/
+
+# ── RimWorld mod 编译输出 ──
+# Assemblies/ 下的 DLL 是源码编译产物，可由源码重新生成，不纳入版本控制
+# 如果有第三方预编译依赖 DLL 需要保留，请用 `!Assemblies/xxx.dll` 显式取消忽略
+1.6/Assemblies/*.dll
+1.6/Assemblies/*.pdb
+1.6/Assemblies/*.xml
+
+# ── 操作系统产生的杂项文件 ──
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+# Linux
+*~
+.directory
+
+# ── 备份与临时文件 ──
+*.bak
+*.tmp
+*.log
+*.orig
+
+# ── RimWorld 运行时生成的缓存（不应出现在 mod 仓库里）──
+*.cache
+Cache/

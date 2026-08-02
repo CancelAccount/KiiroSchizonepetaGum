@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <!-- Mod 设置界面标题与复选框文本 -->
+  <KiiroSchizonepetaGum_SettingsCategory>荆芥口香糖</KiiroSchizonepetaGum_SettingsCategory>
+  <KiiroSchizonepetaGum_HealMissingPartsLabel>允许修复缺失部位（断肢）</KiiroSchizonepetaGum_HealMissingPartsLabel>
+  <KiiroSchizonepetaGum_HealMissingPartsDesc>开启后，治愈伤口后剩余的再生量会用于修复一个缺失部位。</KiiroSchizonepetaGum_HealMissingPartsDesc>
+</LanguageData>

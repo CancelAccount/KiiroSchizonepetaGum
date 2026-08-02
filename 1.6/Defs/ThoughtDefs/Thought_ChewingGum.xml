@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <!-- ================================================== -->
+  <!-- ThoughtDef：嚼口香糖带来的想法                       -->
+  <!-- 作用：增加心情，作为「增加娱乐」的情绪反馈           -->
+  <!-- ================================================== -->
+  <ThoughtDef>
+    <defName>Kiiro_AteSchizonepetaGum</defName>
+    <durationDays>0.5</durationDays>
+    <stages>
+      <li>
+        <label>chew schizonepeta gum</label>
+        <description>Chew chew chew...</description>
+        <baseMoodEffect>3</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+</Defs>

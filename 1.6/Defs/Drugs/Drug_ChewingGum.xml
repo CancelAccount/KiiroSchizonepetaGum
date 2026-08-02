@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <!-- ================================================== -->
+  <!-- ThingDef：口香糖物品本体                             -->
+  <!-- 作用：定义图标、价格、食用效果                       -->
+  <!-- 父类 DrugPillBase：原版药丸基类      -->
+  <!-- ================================================== -->
+  <ThingDef ParentName="DrugPillBase">
+    <defName>Kiiro_SchizonepetaGum</defName>
+    <label>schizonepeta chewing gum</label>
+    <description>A chewing gum made from schizonepeta leaves. Speeds up healing, though for some reason users often stand still.</description>
+    <descriptionHyperlinks>
+      <HediffDef>Kiiro_SchizonepetaGumHigh</HediffDef>
+    </descriptionHyperlinks>
+    <!-- 图标：对应文件 1.6/Textures/Things/Item/Drug/SchizonepetaGum.png -->
+    <graphicData>
+      <texPath>Things/Item/Drug/SchizonepetaGum</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <socialPropernessMatters>false</socialPropernessMatters>
+    <rotatable>false</rotatable>
+    <statBases>
+      <MarketValue>2</MarketValue>
+      <WorkToMake>100</WorkToMake>
+      <Mass>0.005</Mass>
+    </statBases>
+    <techLevel>Medieval</techLevel>
+    <!-- 食用属性：增加娱乐 + 给予回血状态 -->
+    <ingestible>
+      <drugCategory>Medical</drugCategory>
+      <tasteThought>Kiiro_AteSchizonepetaGum</tasteThought>
+      <joyKind>Chemical</joyKind>   <!-- 娱乐类型：化学（与绮罗族猫薄荷一致） -->
+      <joy>0.2</joy>                <!-- 娱乐值增加量 -->
+      <!-- 自定义动作文本：用"嚼"代替默认的"吃/服用"，更符合口香糖主题 -->
+      <!-- {0} 会被替换为物品 label（如"schizonepeta chewing gum"） -->
+      <ingestCommandString>Chew {0}</ingestCommandString>
+      <ingestReportString>Chewing {0} to heal.</ingestReportString>
+      <ingestReportStringEat>Chewing {0}.</ingestReportStringEat>
+      <outcomeDoers>
+        <li Class="IngestionOutcomeDoer_GiveHediff">
+          <hediffDef>Kiiro_SchizonepetaGumHigh</hediffDef>
+          <severity>1.0</severity>
+        </li>
+      </outcomeDoers>
+    </ingestible>
+    <!-- 材料成本：4 片荆芥叶 -->
+    <costList>
+      <Kiiro_SchizonepetaLeaf>4</Kiiro_SchizonepetaLeaf>
+    </costList>
+    <comps>
+      <li Class="CompProperties_Drug">
+        <listOrder>1006</listOrder>
+      </li>
+    </comps>
+  </ThingDef>
+
+</Defs>

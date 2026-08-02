@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <!-- Mod 设置界面标题与复选框文本 -->
+  <KiiroSchizonepetaGum_SettingsCategory>Kiiro Schizonepeta Gum</KiiroSchizonepetaGum_SettingsCategory>
+  <KiiroSchizonepetaGum_HealMissingPartsLabel>Allow healing missing parts (severed limbs)</KiiroSchizonepetaGum_HealMissingPartsLabel>
+  <KiiroSchizonepetaGum_HealMissingPartsDesc>When enabled, excess regeneration after healing wounds will restore one missing body part.</KiiroSchizonepetaGum_HealMissingPartsDesc>
+</LanguageData>

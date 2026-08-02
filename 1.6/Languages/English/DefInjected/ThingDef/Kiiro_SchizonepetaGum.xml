@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <!-- ThingDef: schizonepeta chewing gum -->
+  <Kiiro_SchizonepetaGum.ingestCommandString>Chew {0}</Kiiro_SchizonepetaGum.ingestCommandString>
+  <Kiiro_SchizonepetaGum.ingestReportString>Chewing {0} to heal.</Kiiro_SchizonepetaGum.ingestReportString>
+  <Kiiro_SchizonepetaGum.ingestReportStringEat>Chewing {0}.</Kiiro_SchizonepetaGum.ingestReportStringEat>
+</LanguageData>

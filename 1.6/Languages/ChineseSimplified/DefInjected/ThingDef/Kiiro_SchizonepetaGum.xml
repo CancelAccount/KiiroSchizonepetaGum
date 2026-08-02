@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <!-- ThingDef：荆芥口香糖物品本体 -->
+  <Kiiro_SchizonepetaGum.label>荆芥口香糖</Kiiro_SchizonepetaGum.label>
+  <Kiiro_SchizonepetaGum.description>用荆芥叶制成的口香糖。可以快速促进愈合，不知为何服用者常常站在原地不动。</Kiiro_SchizonepetaGum.description>
+
+  <!-- 食用动作文本（覆盖英文 ingestCommandString/ingestReportString） -->
+  <!-- {0} 占位符会被替换为物品 label -->
+  <Kiiro_SchizonepetaGum.ingestCommandString>嚼 {0}</Kiiro_SchizonepetaGum.ingestCommandString>
+  <Kiiro_SchizonepetaGum.ingestReportString>正在嚼 {0}回血。</Kiiro_SchizonepetaGum.ingestReportString>
+  <Kiiro_SchizonepetaGum.ingestReportStringEat>正在嚼 {0}。</Kiiro_SchizonepetaGum.ingestReportStringEat>
+</LanguageData>

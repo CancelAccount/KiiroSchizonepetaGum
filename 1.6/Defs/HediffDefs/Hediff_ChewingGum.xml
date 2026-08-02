@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <!-- ================================================== -->
+  <!-- HediffDef：荆芥口香糖带来的身体状态                  -->
+  <!-- 作用：恢复伤口 hp、轻微减痛                          -->
+  <!-- ================================================== -->
+  <HediffDef>
+    <defName>Kiiro_SchizonepetaGumHigh</defName>
+    <hediffClass>Hediff_High</hediffClass>
+    <label>schizonepeta gum</label>
+    <description>The refreshing flavor of schizonepeta gum gently soothes the body, slowly regenerating wounds and easing pain.</description>
+    <defaultLabelColor>(0.4,0.8,0.2)</defaultLabelColor>
+    <scenarioCanAdd>true</scenarioCanAdd>
+    <maxSeverity>1.0</maxSeverity>
+    <isBad>false</isBad>
+    <!-- 状态消退：每天 -4，约持续 0.25 天 -->
+    <comps>
+      <li Class="HediffCompProperties_SeverityPerDay">
+        <severityPerDay>-4</severityPerDay>
+        <showHoursToRecover>true</showHoursToRecover>
+      </li>
+      <!-- 回血效果：每天 10 hp（healAmountPerDay=10 表示每日恢复 10 hp）。
+           复刻原版 Anomaly regeneration 机制。
+           是否修复断肢由 mod 设置界面控制。 -->
+      <li Class="KiiroSchizonepetaGum.HediffCompProperties_SlowRegen">
+        <healAmountPerDay>10</healAmountPerDay>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <painFactor>0.9</painFactor>                   <!-- 轻微减痛 -->
+        <!-- 移动能力：最大20% -->
+        <capMods>
+          <li>
+            <capacity>Moving</capacity>
+            <setMax>0.20</setMax>
+          </li>
+        </capMods>
+      </li>
+    </stages>
+  </HediffDef>
+
+</Defs>
