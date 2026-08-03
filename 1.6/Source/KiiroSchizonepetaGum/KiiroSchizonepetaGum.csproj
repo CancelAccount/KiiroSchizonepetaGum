@@ -51,6 +51,7 @@
     <Compile Include="HediffComp_SlowRegen\HediffComp_SlowRegen.cs" />
     <Compile Include="KiiroSchizonepetaGumMod.cs" />
     <Compile Include="KiiroSchizonepetaGumSettings.cs" />
+    <Compile Include="ThoughtWorker_AteSchizonepetaGum.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

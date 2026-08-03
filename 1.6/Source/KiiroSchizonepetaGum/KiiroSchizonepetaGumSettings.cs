@@ -11,8 +11,8 @@ namespace KiiroSchizonepetaGum
     public class KiiroSchizonepetaGumSettings : ModSettings
     {
         /// <summary>是否允许口香糖修复缺失部位（断肢）。
-        /// 默认 false（与原版平衡一致：口香糖只治伤口，不断肢重生）。
-        /// 玩家可在设置界面开启，开启后治愈伤口剩余的再生量会修复一个 MissingPart。
+        /// 默认 false（只治伤口，不断肢重生）。
+        /// 开启后治愈伤口剩余的再生量会修复一个 MissingPart。
         /// </summary>
         public bool healMissingParts = false;
 

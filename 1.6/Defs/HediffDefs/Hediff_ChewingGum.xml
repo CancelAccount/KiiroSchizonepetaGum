@@ -3,13 +3,13 @@
 
   <!-- ================================================== -->
   <!-- HediffDef：荆芥口香糖带来的身体状态                  -->
-  <!-- 作用：恢复伤口 hp、轻微减痛                          -->
+  <!-- 作用：恢复伤口 hp、轻微减痛，使服用者站在原地                          -->
   <!-- ================================================== -->
   <HediffDef>
     <defName>Kiiro_SchizonepetaGumHigh</defName>
     <hediffClass>Hediff_High</hediffClass>
     <label>schizonepeta gum</label>
-    <description>The refreshing flavor of schizonepeta gum gently soothes the body, slowly regenerating wounds and easing pain.</description>
+    <description>Chewing schizonepeta gum, slowly regenerating wounds and easing pain.</description>
     <defaultLabelColor>(0.4,0.8,0.2)</defaultLabelColor>
     <scenarioCanAdd>true</scenarioCanAdd>
     <maxSeverity>1.0</maxSeverity>

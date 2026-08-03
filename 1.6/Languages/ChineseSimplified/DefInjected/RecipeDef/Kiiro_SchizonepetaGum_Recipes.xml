@@ -7,6 +7,6 @@
 
   <!-- RecipeDef：荆芥口香糖制作配方（×4 批量） -->
   <Kiiro_Make_BulkSchizonepetaGum.label>制作荆芥口香糖×4</Kiiro_Make_BulkSchizonepetaGum.label>
-  <Kiiro_Make_BulkSchizonepetaGum.description>制作一批 4 片荆芥口香糖。</Kiiro_Make_BulkSchizonepetaGum.description>
+  <Kiiro_Make_BulkSchizonepetaGum.description>制作一批荆芥口香糖。</Kiiro_Make_BulkSchizonepetaGum.description>
   <Kiiro_Make_BulkSchizonepetaGum.jobString>正在批量制作荆芥口香糖。</Kiiro_Make_BulkSchizonepetaGum.jobString>
 </LanguageData>

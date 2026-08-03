@@ -30,7 +30,7 @@ namespace KiiroSchizonepetaGum
         /// <param name="inRect">RimWorld 分配给本 mod 的绘制区域。</param>
         public override void DoSettingsWindowContents(Rect inRect)
         {
-            Listing_Standard listing = new Listing_Standard();
+            Listing_Standard listing = new();
             listing.Begin(inRect);
 
             // 复选框：是否允许修复断肢

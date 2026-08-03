@@ -2,17 +2,23 @@
 <Defs>
 
   <!-- ================================================== -->
-  <!-- ThoughtDef：嚼口香糖带来的想法                       -->
-  <!-- 作用：增加心情，作为「增加娱乐」的情绪反馈           -->
+  <!-- ThoughtDef：嚼口香糖带来的想法（situational thought）-->
   <!-- ================================================== -->
   <ThoughtDef>
     <defName>Kiiro_AteSchizonepetaGum</defName>
-    <durationDays>0.5</durationDays>
+    <workerClass>KiiroSchizonepetaGum.ThoughtWorker_AteSchizonepetaGum</workerClass>
     <stages>
+      <!-- stage 0：其他种族 -->
       <li>
         <label>chew schizonepeta gum</label>
         <description>Chew chew chew...</description>
         <baseMoodEffect>3</baseMoodEffect>
+      </li>
+      <!-- stage 1：绮罗 -->
+      <li>
+        <label>chew schizonepeta gum</label>
+        <description>Chew chew chew chew...</description>
+        <baseMoodEffect>8</baseMoodEffect>
       </li>
     </stages>
   </ThoughtDef>

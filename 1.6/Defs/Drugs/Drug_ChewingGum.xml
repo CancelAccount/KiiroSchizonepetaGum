@@ -29,8 +29,8 @@
     <!-- 食用属性：增加娱乐 + 给予回血状态 -->
     <ingestible>
       <drugCategory>Medical</drugCategory>
-      <tasteThought>Kiiro_AteSchizonepetaGum</tasteThought>
-      <joyKind>Chemical</joyKind>   <!-- 娱乐类型：化学（与绮罗族猫薄荷一致） -->
+      <!-- 心情加成改由 ThoughtWorker_AteSchizonepetaGum 处理：绮罗+8，其它种族+3 -->
+      <joyKind>Chemical</joyKind>   <!-- 娱乐类型：化学 -->
       <joy>0.2</joy>                <!-- 娱乐值增加量 -->
       <!-- 自定义动作文本：用"嚼"代替默认的"吃/服用"，更符合口香糖主题 -->
       <!-- {0} 会被替换为物品 label（如"schizonepeta chewing gum"） -->
