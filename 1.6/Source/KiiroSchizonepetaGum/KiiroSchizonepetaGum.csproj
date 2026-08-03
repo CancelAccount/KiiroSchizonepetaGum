@@ -49,9 +49,13 @@
   <ItemGroup>
     <Compile Include="HediffComp_SlowRegen\HediffCompProperties_SlowRegen.cs" />
     <Compile Include="HediffComp_SlowRegen\HediffComp_SlowRegen.cs" />
+    <Compile Include="HediffComp_TendWounds\HediffCompProperties_SlowTend.cs" />
+    <Compile Include="HediffComp_TendWounds\HediffComp_SlowTend.cs" />
     <Compile Include="KiiroSchizonepetaGumMod.cs" />
     <Compile Include="KiiroSchizonepetaGumSettings.cs" />
     <Compile Include="ThoughtWorker_AteSchizonepetaGum.cs" />
+    <Compile Include="WorkGiver_TakeGumWhenInjured.cs" />
+    <Compile Include="JobGiver_CatTakeGumWhenInjured.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

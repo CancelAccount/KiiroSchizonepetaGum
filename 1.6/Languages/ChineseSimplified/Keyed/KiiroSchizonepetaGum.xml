@@ -4,4 +4,7 @@
   <KiiroSchizonepetaGum_SettingsCategory>荆芥口香糖</KiiroSchizonepetaGum_SettingsCategory>
   <KiiroSchizonepetaGum_HealMissingPartsLabel>允许修复缺失部位（断肢）</KiiroSchizonepetaGum_HealMissingPartsLabel>
   <KiiroSchizonepetaGum_HealMissingPartsDesc>开启后，治愈伤口后剩余的再生量会用于修复一个缺失部位。</KiiroSchizonepetaGum_HealMissingPartsDesc>
+
+  <!-- 健康面板 tooltip 文本（CompTipStringExtra） -->
+  <KiiroSchizonepetaGum_RegenRate>再生速度：{0} hp/天</KiiroSchizonepetaGum_RegenRate>
 </LanguageData>

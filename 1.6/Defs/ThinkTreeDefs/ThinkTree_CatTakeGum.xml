@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <!-- ================================================== -->
+  <!-- ThinkTreeDef：猫受伤后寻找口香糖                     -->
+  <!--                                                     -->
+  <!-- 通过 insertTag="Animal_PreMain" 注入到动物行为树     -->
+  <!-- （见 Core/Defs/ThinkTreeDefs/Animal.xml:98-100）     -->
+  <!--                                                     -->
+  <!-- 注入位置：在"逃跑/战斗"之后，"觅食/漫游"之前          -->
+  <!-- 这样受伤的猫会优先去拿口香糖，而不是继续闲逛          -->
+  <!-- ================================================== -->
+  <ThinkTreeDef>
+    <defName>Kiiro_CatTakeGumWhenInjured</defName>
+    <insertTag>Animal_PreMain</insertTag>
+    <!-- insertPriority 越高越先执行（降序排列） -->
+    <!-- 设为 10，低于关键生存行为，但高于普通行为 -->
+    <insertPriority>10</insertPriority>
+    <!-- thinkRoot 直接是我们的 JobGiver，所有条件判断在 C# 里做 -->
+    <thinkRoot Class="KiiroSchizonepetaGum.JobGiver_CatTakeGumWhenInjured" />
+  </ThinkTreeDef>
+
+</Defs>

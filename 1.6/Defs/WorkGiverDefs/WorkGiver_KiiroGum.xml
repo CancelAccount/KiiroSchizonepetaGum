@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <!-- ================================================== -->
+  <!-- WorkGiverDef：受伤的绮罗族自动拿口香糖服用           -->
+  <!-- workType = PatientBedRest（和卧床养病同一优先级）   -->
+  <!-- 条件：绮罗族 + 有需要治疗的伤口 + 库存有口香糖       -->
+  <!-- ================================================== -->
+  <WorkGiverDef>
+    <defName>Kiiro_TakeGumWhenInjured</defName>
+    <label>take schizonepeta gum when injured</label>
+    <giverClass>KiiroSchizonepetaGum.WorkGiver_TakeGumWhenInjured</giverClass>
+    <workType>PatientBedRest</workType>
+    <priorityInType>100</priorityInType>
+    <verb>take gum</verb>
+    <gerund>taking gum</gerund>
+  </WorkGiverDef>
+
+</Defs>

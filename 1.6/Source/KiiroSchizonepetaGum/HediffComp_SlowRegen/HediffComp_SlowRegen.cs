@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using RimWorld;
 using UnityEngine;
 using Verse;
@@ -19,6 +20,13 @@ namespace KiiroSchizonepetaGum
 
         /// <summary>获取属性配置（把基类 props 转成本 comp 的属性类型）。</summary>
         public HediffCompProperties_SlowRegen Props => (HediffCompProperties_SlowRegen)props;
+
+        /// <summary>
+        /// 鼠标悬停在 hediff 上时，tooltip 底部显示再生速度。
+        /// 参考 HediffComp_TendDuration.CompTipStringExtra 的写法。
+        /// </summary>
+        public override string CompTipStringExtra =>
+            "KiiroSchizonepetaGum_RegenRate".Translate(Props.healAmountPerDay);
 
         /// <summary>
         /// 每 tick 调用。每 15 tick 执行一次再生（与原版间隔一致）。

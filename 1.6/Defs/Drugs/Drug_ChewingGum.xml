@@ -22,7 +22,7 @@
     <rotatable>false</rotatable>
     <statBases>
       <MarketValue>2</MarketValue>
-      <WorkToMake>100</WorkToMake>
+      <WorkToMake>300</WorkToMake>
       <Mass>0.005</Mass>
     </statBases>
     <techLevel>Medieval</techLevel>
@@ -31,16 +31,15 @@
       <drugCategory>Medical</drugCategory>
       <!-- 心情加成改由 ThoughtWorker_AteSchizonepetaGum 处理：绮罗+8，其它种族+3 -->
       <joyKind>Chemical</joyKind>   <!-- 娱乐类型：化学 -->
-      <joy>0.2</joy>                <!-- 娱乐值增加量 -->
-      <!-- 自定义动作文本：用"嚼"代替默认的"吃/服用"，更符合口香糖主题 -->
-      <!-- {0} 会被替换为物品 label（如"schizonepeta chewing gum"） -->
+      <joy>0.05</joy>                <!-- 娱乐值增加量 -->
       <ingestCommandString>Chew {0}</ingestCommandString>
       <ingestReportString>Chewing {0} to heal.</ingestReportString>
       <ingestReportStringEat>Chewing {0}.</ingestReportStringEat>
       <outcomeDoers>
         <li Class="IngestionOutcomeDoer_GiveHediff">
           <hediffDef>Kiiro_SchizonepetaGumHigh</hediffDef>
-          <severity>1.0</severity>
+          <!-- 最大剂量：0.5，吃2片后拉满 -->
+          <severity>0.5</severity>
         </li>
       </outcomeDoers>
     </ingestible>

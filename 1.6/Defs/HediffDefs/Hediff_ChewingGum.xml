@@ -9,27 +9,34 @@
     <defName>Kiiro_SchizonepetaGumHigh</defName>
     <hediffClass>Hediff_High</hediffClass>
     <label>schizonepeta gum</label>
-    <description>Chewing schizonepeta gum, slowly regenerating wounds and easing pain.</description>
+    <description>Chewing schizonepeta gum, slowly regenerating wounds and easing pain. Strange, this will make the patient stand still.</description>
     <defaultLabelColor>(0.4,0.8,0.2)</defaultLabelColor>
     <scenarioCanAdd>true</scenarioCanAdd>
+    <!-- 最大剂量：2.0，吃2片后拉满 -->
     <maxSeverity>1.0</maxSeverity>
     <isBad>false</isBad>
-    <!-- 状态消退：每天 -4，约持续 0.25 天 -->
+    <!-- 状态消退：每天 -2，每片持续 0.25 天 -->
     <comps>
       <li Class="HediffCompProperties_SeverityPerDay">
-        <severityPerDay>-4</severityPerDay>
+        <severityPerDay>-2</severityPerDay>
         <showHoursToRecover>true</showHoursToRecover>
       </li>
-      <!-- 回血效果：每天 10 hp（healAmountPerDay=10 表示每日恢复 10 hp）。
-           复刻原版 Anomaly regeneration 机制。
-           是否修复断肢由 mod 设置界面控制。 -->
+      <!-- 回血效果：每天 10 hp
+           复刻原版 Anomaly regeneration 机制
+           是否修复断肢由 mod 设置界面控制 -->
       <li Class="KiiroSchizonepetaGum.HediffCompProperties_SlowRegen">
         <healAmountPerDay>10</healAmountPerDay>
+      </li>
+      <!-- 每 150 tick 包扎一个流血伤口 -->
+      <li Class="KiiroSchizonepetaGum.HediffCompProperties_SlowTend">
+        <tendQuality>0.4</tendQuality>
+        <tendQualityMax>0.5</tendQualityMax>
       </li>
     </comps>
     <stages>
       <li>
-        <painFactor>0.9</painFactor>                   <!-- 轻微减痛 -->
+        <!-- 轻微减痛 -->
+        <painFactor>0.9</painFactor>        
         <!-- 移动能力：最大20% -->
         <capMods>
           <li>

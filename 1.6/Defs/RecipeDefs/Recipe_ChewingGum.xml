@@ -6,7 +6,7 @@
   <!-- ================================================== -->
 
   <!-- ── ×1 单做 ── -->
-  <!-- 成本：4 片荆芥叶 / 工时：100                          -->
+  <!-- 成本：4 片荆芥叶 / 工时：300                          -->
   <RecipeDef>
     <defName>Kiiro_Make_SchizonepetaGum</defName>
     <label>make schizonepeta chewing gum</label>
@@ -15,7 +15,7 @@
     <workSpeedStat>DrugSynthesisSpeed</workSpeedStat>
     <effectWorking>Cook</effectWorking>
     <soundWorking>Recipe_Machining</soundWorking>
-    <workAmount>100</workAmount>
+    <workAmount>300</workAmount>
     <ingredients>
       <li>
         <filter>
@@ -42,7 +42,7 @@
   </RecipeDef>
 
   <!-- ── ×4 批量 ── -->
-  <!-- 成本：16 片荆芥叶（4 × 4）/ 工时：400（100 × 4）     -->
+  <!-- 成本：16 片荆芥叶（4 × 4）/ 工时：1200（300 × 4）     -->
   <RecipeDef>
     <defName>Kiiro_Make_BulkSchizonepetaGum</defName>
     <label>make schizonepeta chewing gum x4</label>
@@ -51,7 +51,7 @@
     <workSpeedStat>DrugSynthesisSpeed</workSpeedStat>
     <effectWorking>Cook</effectWorking>
     <soundWorking>Recipe_Machining</soundWorking>
-    <workAmount>400</workAmount>
+    <workAmount>1200</workAmount>
     <ingredients>
       <li>
         <filter>

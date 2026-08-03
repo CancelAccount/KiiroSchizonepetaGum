@@ -7,20 +7,23 @@
     <li>1.6</li>
   </supportedVersions>
   <description>
-    新增药品：口香糖（荆芥口味）。使绮罗食用后增加娱乐并缓慢回血。
-    A chewing gum made from schizonepeta leaves — popular among Kiiros.
-    Chewing it lifts the mood and slowly regenerates wounds.
+    新增药品：口香糖（荆芥口味）。食用后增加娱乐并缓慢回血。
+    绮罗族和猫受伤后会主动寻找并服用口香糖。
+    注：服用后，不知为何有一股神秘力量会把服用者硬控再原地，建议在医疗床附近存放该药物。
+    A chewing gum made from schizonepeta leaves. Chewing it lifts the mood and slowly regenerates wounds.
+    The Kiiros and cats will automatically find and ingest the gum after they are injured.
+    Note: After ingesting the gum, a mysterious force will hold the patient in place, and it is recommended to store the drug near a bed.
   </description>
   <modDependencies>
+    <li>
+      <packageId>Ancot.AncotLibrary</packageId>
+      <displayName>Ancot Library</displayName>
+      <steamWorkshopUrl>https://steamcommunity.com/sharedfiles/filedetails/?id=2988801276</steamWorkshopUrl>
+    </li>
     <li>
       <packageId>Ancot.KiiroRace</packageId>
       <displayName>Kiiro Race</displayName>
       <steamWorkshopUrl>https://steamcommunity.com/sharedfiles/filedetails/?id=2988200143</steamWorkshopUrl>
-    </li>
-    <li>
-      <packageId>Ancot.AncotLibrary</packageId>
-      <displayName>Ancot Library</displayName>
-      <downloadIfMissing>true</downloadIfMissing>
     </li>
   </modDependencies>
   <loadAfter>
