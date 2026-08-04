@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <!-- ================================================== -->
+  <!-- 荆芥口香糖间歇音效                                   -->
+  <!--                                                     -->
+  <!-- Kiiro_LaoWuSound：hediff 期间每 3600 tick 播一次     -->
+  <!--   - AudioGrain_Folder 从 Sounds/LaoWu/ 随机选一条    -->
+  <!--   - 用户将音效文件命名为 LaoWu1.wav ~ LaoWu10.wav    -->
+  <!--     放入 Sounds/LaoWu/ 目录即可                      -->
+  <!--   - maxSimultaneous=1 限制瞬间重叠（C# 层另加        -->
+  <!--     真实时间防重叠判断，应对高倍速 mod）              -->
+  <!--   - sustain 默认 false（OneShot 一次性播放）         -->
+  <!--   - tempoAffectedByGameSpeed 默认 false              -->
+  <!--     （音效不随倍速加速，按真实时间 10s 播完）         -->
+  <!-- ================================================== -->
+  <SoundDef>
+    <defName>Kiiro_LaoWuSound</defName>
+    <context>MapOnly</context>
+    <maxSimultaneous>1</maxSimultaneous>
+    <subSounds>
+      <li>
+        <grains>
+          <li Class="AudioGrain_Folder">
+            <clipFolderPath>LaoWu</clipFolderPath>
+          </li>
+        </grains>
+      </li>
+    </subSounds>
+  </SoundDef>
+
+</Defs>

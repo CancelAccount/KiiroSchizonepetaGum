@@ -42,6 +42,29 @@ namespace KiiroSchizonepetaGum
                 "KiiroSchizonepetaGum_HealMissingPartsDesc".Translate()
             );
 
+            // 复选框：是否开启视觉特效
+            listing.CheckboxLabeled(
+                "KiiroSchizonepetaGum_VisualEffectLabel".Translate(),
+                ref Settings.enableVisualEffect,
+                "KiiroSchizonepetaGum_VisualEffectDesc".Translate()
+            );
+
+            // 复选框：是否开启老吴音效
+            listing.CheckboxLabeled(
+                "KiiroSchizonepetaGum_SoundEffectLabel".Translate(),
+                ref Settings.enableSoundEffect,
+                "KiiroSchizonepetaGum_SoundEffectDesc".Translate()
+            );
+
+            // 滑块：音效音量（0~1），拖动调节最大音量
+            // SliderLabeled(label, val, min, max, labelPct, tooltip) 返回滑动后的新值
+            // ToStringPercent() 把小数转换为百分比字符串
+            Settings.soundVolume = listing.SliderLabeled(
+                "KiiroSchizonepetaGum_SoundVolumeLabel".Translate() + ": " + Settings.soundVolume.ToStringPercent(),
+                Settings.soundVolume, 0f, 1f, 0.25f,
+                "KiiroSchizonepetaGum_SoundVolumeDesc".Translate()
+            );
+
             listing.End();
             base.DoSettingsWindowContents(inRect);
         }

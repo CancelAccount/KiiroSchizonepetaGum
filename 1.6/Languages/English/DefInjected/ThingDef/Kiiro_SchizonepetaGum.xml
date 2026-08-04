@@ -3,6 +3,6 @@
   <!-- ThingDef: schizonepeta chewing gum -->
   <!-- 这三个字段位于 ingestible 子对象内，需要用 ingestible. 前缀 -->
   <Kiiro_SchizonepetaGum.ingestible.ingestCommandString>Chew {0}</Kiiro_SchizonepetaGum.ingestible.ingestCommandString>
-  <Kiiro_SchizonepetaGum.ingestible.ingestReportString>Chewing {0} to heal.</Kiiro_SchizonepetaGum.ingestible.ingestReportString>
-  <Kiiro_SchizonepetaGum.ingestible.ingestReportStringEat>Chewing {0}.</Kiiro_SchizonepetaGum.ingestible.ingestReportStringEat>
+  <Kiiro_SchizonepetaGum.ingestible.ingestReportString>Chewing {0} to heal</Kiiro_SchizonepetaGum.ingestible.ingestReportString>
+  <Kiiro_SchizonepetaGum.ingestible.ingestReportStringEat>Chewing {0}</Kiiro_SchizonepetaGum.ingestible.ingestReportStringEat>
 </LanguageData>

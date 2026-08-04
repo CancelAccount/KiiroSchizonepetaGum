@@ -4,6 +4,12 @@
   <KiiroSchizonepetaGum_SettingsCategory>荆芥口香糖</KiiroSchizonepetaGum_SettingsCategory>
   <KiiroSchizonepetaGum_HealMissingPartsLabel>允许修复缺失部位（断肢）</KiiroSchizonepetaGum_HealMissingPartsLabel>
   <KiiroSchizonepetaGum_HealMissingPartsDesc>开启后，治愈伤口后剩余的再生量会用于修复一个缺失部位。</KiiroSchizonepetaGum_HealMissingPartsDesc>
+  <KiiroSchizonepetaGum_VisualEffectLabel>开启视觉特效</KiiroSchizonepetaGum_VisualEffectLabel>
+  <KiiroSchizonepetaGum_VisualEffectDesc>嚼口香糖时在人物周围显示治疗特效。关闭可节省性能。</KiiroSchizonepetaGum_VisualEffectDesc>
+  <KiiroSchizonepetaGum_SoundEffectLabel>开启老吴音效</KiiroSchizonepetaGum_SoundEffectLabel>
+  <KiiroSchizonepetaGum_SoundEffectDesc>嚼口香糖时播放基米的天籁之音(bushi)。</KiiroSchizonepetaGum_SoundEffectDesc>
+  <KiiroSchizonepetaGum_SoundVolumeLabel>音效音量</KiiroSchizonepetaGum_SoundVolumeLabel>
+  <KiiroSchizonepetaGum_SoundVolumeDesc>调节老吴音效的音量大小。什么？还想听得再清楚一点？</KiiroSchizonepetaGum_SoundVolumeDesc>
 
   <!-- 健康面板 tooltip 文本（CompTipStringExtra） -->
   <KiiroSchizonepetaGum_RegenRate>再生速度：{0} hp/天</KiiroSchizonepetaGum_RegenRate>

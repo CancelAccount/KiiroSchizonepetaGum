@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <!-- ================================================== -->
+  <!-- 口香糖自愈特效                                        -->
+  <!--                                                     -->
+  <!-- Fleck_KiiroGumParticle：间歇粒子效果                 -->
+  <!--   - 每 N tick 在 pawn 身上生成一个，自动淡出消失      -->
+  <!--   - 生成时在 x 轴方向叠加随机偏移（C# 代码控制）      -->
+  <!--   - 贴图路径：Textures/Things/Mote/KiiroGumParticle.png -->
+  <!-- ================================================== -->
+
+  <!-- 间歇粒子（Fleck = FleckDef，一次性自动消失） -->
+  <FleckDef ParentName="FleckBase_Thrown">
+    <defName>Fleck_KiiroGumParticle</defName>
+    <graphicData>
+      <drawSize>(0.4, 0.4)</drawSize>
+      <!-- 贴图放在 Textures/Things/Mote/KiiroGumParticle.png -->
+      <texPath>Things/Mote/KiiroGumParticle</texPath>
+      <shaderType>MoteGlow</shaderType>
+    </graphicData>
+    <altitudeLayer>MetaOverlays</altitudeLayer>
+    <fadeInTime>0.1</fadeInTime>
+    <solidTime>0.8</solidTime>
+    <fadeOutTime>1.0</fadeOutTime>
+  </FleckDef>
+
+</Defs>

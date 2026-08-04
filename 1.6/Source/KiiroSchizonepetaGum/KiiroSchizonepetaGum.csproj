@@ -56,6 +56,10 @@
     <Compile Include="ThoughtWorker_AteSchizonepetaGum.cs" />
     <Compile Include="WorkGiver_TakeGumWhenInjured.cs" />
     <Compile Include="JobGiver_CatTakeGumWhenInjured.cs" />
+    <Compile Include="HediffComp_VisualEffect\HediffCompProperties_VisualEffect.cs" />
+    <Compile Include="HediffComp_VisualEffect\HediffComp_VisualEffect.cs" />
+    <Compile Include="HediffComp_SoundPlayer\HediffCompProperties_SoundPlayer.cs" />
+    <Compile Include="HediffComp_SoundPlayer\HediffComp_SoundPlayer.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -3,13 +3,13 @@
 
   <!-- ================================================== -->
   <!-- HediffDef：荆芥口香糖带来的身体状态                  -->
-  <!-- 作用：恢复伤口 hp、轻微减痛，使服用者站在原地                          -->
+  <!-- 作用：恢复伤口 hp、轻微减痛，限制移动能力并开始老吴                          -->
   <!-- ================================================== -->
   <HediffDef>
     <defName>Kiiro_SchizonepetaGumHigh</defName>
     <hediffClass>Hediff_High</hediffClass>
     <label>schizonepeta gum</label>
-    <description>Chewing schizonepeta gum, slowly regenerating wounds and easing pain. Strange, this will make the patient stand still.</description>
+    <description>Chewing schizonepeta gum, slowly regenerating wounds and easing pain. Strange, this will make the patient stand still and emit a strange sound.</description>
     <defaultLabelColor>(0.4,0.8,0.2)</defaultLabelColor>
     <scenarioCanAdd>true</scenarioCanAdd>
     <!-- 最大剂量：2.0，吃2片后拉满 -->
@@ -27,10 +27,28 @@
       <li Class="KiiroSchizonepetaGum.HediffCompProperties_SlowRegen">
         <healAmountPerDay>10</healAmountPerDay>
       </li>
-      <!-- 每 150 tick 包扎一个流血伤口 -->
+      <!-- 每 150 帧包扎一个流血伤口 -->
       <li Class="KiiroSchizonepetaGum.HediffCompProperties_SlowTend">
         <tendQuality>0.4</tendQuality>
         <tendQualityMax>0.5</tendQualityMax>
+      </li>
+      <!-- 视觉特效：每300帧浮现治疗标 -->
+      <!-- 贴图：Textures/Things/Mote/KiiroGumParticle.png -->
+      <li Class="KiiroSchizonepetaGum.HediffCompProperties_VisualEffect">
+        <particleFleckDef>Fleck_KiiroGumParticle</particleFleckDef>
+        <particleIntervalTicks>300</particleIntervalTicks>
+        <particleScale>0.8</particleScale>
+        <particleRandomOffsetX>0.5</particleRandomOffsetX>
+        <particleRandomOffsetY>0.4</particleRandomOffsetY>
+        <!-- 粒子从身体中心偏上方飘出 -->
+        <particleOffset>(0, 0.5, 0)</particleOffset>
+      </li>
+      <!-- 间歇音效：hediff 期间每 3600 帧（10s）随机播一条老吴音效
+           防重叠：现实时间 10s 内已播过则跳过，防止开超高倍速导致百基争鸣 -->
+      <li Class="KiiroSchizonepetaGum.HediffCompProperties_SoundPlayer">
+        <soundDef>Kiiro_LaoWuSound</soundDef>
+        <intervalTicks>3600</intervalTicks>
+        <soundDurationReal>10</soundDurationReal>
       </li>
     </comps>
     <stages>

@@ -1,10 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
   <!-- Mod 设置界面标题与复选框文本 -->
+  <!-- Mod Settings -->
   <KiiroSchizonepetaGum_SettingsCategory>Kiiro Schizonepeta Gum</KiiroSchizonepetaGum_SettingsCategory>
   <KiiroSchizonepetaGum_HealMissingPartsLabel>Allow healing missing parts (severed limbs)</KiiroSchizonepetaGum_HealMissingPartsLabel>
   <KiiroSchizonepetaGum_HealMissingPartsDesc>When enabled, excess regeneration after healing wounds will restore one missing body part.</KiiroSchizonepetaGum_HealMissingPartsDesc>
+  <KiiroSchizonepetaGum_VisualEffectLabel>Enable visual effects</KiiroSchizonepetaGum_VisualEffectLabel>
+  <KiiroSchizonepetaGum_VisualEffectDesc>Shows healing effects around pawns chewing gum. Disable to save performance.</KiiroSchizonepetaGum_VisualEffectDesc>
+  <KiiroSchizonepetaGum_SoundEffectLabel>Enable chewing gum sound</KiiroSchizonepetaGum_SoundEffectLabel>
+  <KiiroSchizonepetaGum_SoundEffectDesc>Periodically plays a sound effect while chewing gum.</KiiroSchizonepetaGum_SoundEffectDesc>
+  <KiiroSchizonepetaGum_SoundVolumeLabel>Sound volume</KiiroSchizonepetaGum_SoundVolumeLabel>
+  <KiiroSchizonepetaGum_SoundVolumeDesc>Adjusts the volume of the chewing gum sound effect. Well, do you want to hear it more clearly?</KiiroSchizonepetaGum_SoundVolumeDesc>
 
   <!-- 健康面板 tooltip 文本（CompTipStringExtra） -->
+  <!-- Health Panel Tooltip -->
   <KiiroSchizonepetaGum_RegenRate>Regeneration: {0} hp/day</KiiroSchizonepetaGum_RegenRate>
 </LanguageData>

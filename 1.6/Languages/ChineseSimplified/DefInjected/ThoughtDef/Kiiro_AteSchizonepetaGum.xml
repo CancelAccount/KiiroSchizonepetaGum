@@ -2,9 +2,9 @@
 <LanguageData>
   <!-- ThoughtDef：嚼口香糖带来的想法 -->
   <!-- stage 0：其他种族（+3） -->
-  <Kiiro_AteSchizonepetaGum.stages.0.label>嚼荆芥口香糖</Kiiro_AteSchizonepetaGum.stages.0.label>
+  <Kiiro_AteSchizonepetaGum.stages.0.label>嚼口香糖</Kiiro_AteSchizonepetaGum.stages.0.label>
   <Kiiro_AteSchizonepetaGum.stages.0.description>嚼嚼嚼……</Kiiro_AteSchizonepetaGum.stages.0.description>
   <!-- stage 1：绮罗族（+8） -->
-  <Kiiro_AteSchizonepetaGum.stages.1.label>嚼荆芥口香糖</Kiiro_AteSchizonepetaGum.stages.1.label>
-  <Kiiro_AteSchizonepetaGum.stages.1.description>嚼嚼嚼嚼嚼嚼……</Kiiro_AteSchizonepetaGum.stages.1.description>
+  <Kiiro_AteSchizonepetaGum.stages.1.label>荆芥味的口香糖</Kiiro_AteSchizonepetaGum.stages.1.label>
+  <Kiiro_AteSchizonepetaGum.stages.1.description>嚼嚼嚼……还是荆芥味的欸~</Kiiro_AteSchizonepetaGum.stages.1.description>
 </LanguageData>

@@ -10,14 +10,14 @@
     <stages>
       <!-- stage 0：其他种族 -->
       <li>
-        <label>chew schizonepeta gum</label>
+        <label>chew gum</label>
         <description>Chew chew chew...</description>
         <baseMoodEffect>3</baseMoodEffect>
       </li>
       <!-- stage 1：绮罗 -->
       <li>
         <label>chew schizonepeta gum</label>
-        <description>Chew chew chew chew...</description>
+        <description>Chew chew chew... it's a schizonepeta gum!</description>
         <baseMoodEffect>8</baseMoodEffect>
       </li>
     </stages>
