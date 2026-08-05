@@ -60,6 +60,8 @@
     <Compile Include="HediffComp_VisualEffect\HediffComp_VisualEffect.cs" />
     <Compile Include="HediffComp_SoundPlayer\HediffCompProperties_SoundPlayer.cs" />
     <Compile Include="HediffComp_SoundPlayer\HediffComp_SoundPlayer.cs" />
+    <Compile Include="HediffComp_SoundPlayer\BattleLogEntry_LaoWuScream.cs" />
+    <Compile Include="Graphic_StackCountByThreshold.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

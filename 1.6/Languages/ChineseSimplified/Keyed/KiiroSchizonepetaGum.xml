@@ -2,8 +2,8 @@
 <LanguageData>
   <!-- Mod 设置界面标题与复选框文本 -->
   <KiiroSchizonepetaGum_SettingsCategory>荆芥口香糖</KiiroSchizonepetaGum_SettingsCategory>
-  <KiiroSchizonepetaGum_HealMissingPartsLabel>允许修复缺失部位（断肢）</KiiroSchizonepetaGum_HealMissingPartsLabel>
-  <KiiroSchizonepetaGum_HealMissingPartsDesc>开启后，治愈伤口后剩余的再生量会用于修复一个缺失部位。</KiiroSchizonepetaGum_HealMissingPartsDesc>
+  <KiiroSchizonepetaGum_HealMissingPartsLabel>超级再生</KiiroSchizonepetaGum_HealMissingPartsLabel>
+  <KiiroSchizonepetaGum_HealMissingPartsDesc>开启后，口香糖的药效会修复缺失部位。</KiiroSchizonepetaGum_HealMissingPartsDesc>
   <KiiroSchizonepetaGum_VisualEffectLabel>开启视觉特效</KiiroSchizonepetaGum_VisualEffectLabel>
   <KiiroSchizonepetaGum_VisualEffectDesc>嚼口香糖时在人物周围显示治疗特效。关闭可节省性能。</KiiroSchizonepetaGum_VisualEffectDesc>
   <KiiroSchizonepetaGum_SoundEffectLabel>开启老吴音效</KiiroSchizonepetaGum_SoundEffectLabel>

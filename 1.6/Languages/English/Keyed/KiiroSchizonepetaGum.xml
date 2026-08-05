@@ -3,8 +3,8 @@
   <!-- Mod 设置界面标题与复选框文本 -->
   <!-- Mod Settings -->
   <KiiroSchizonepetaGum_SettingsCategory>Kiiro Schizonepeta Gum</KiiroSchizonepetaGum_SettingsCategory>
-  <KiiroSchizonepetaGum_HealMissingPartsLabel>Allow healing missing parts (severed limbs)</KiiroSchizonepetaGum_HealMissingPartsLabel>
-  <KiiroSchizonepetaGum_HealMissingPartsDesc>When enabled, excess regeneration after healing wounds will restore one missing body part.</KiiroSchizonepetaGum_HealMissingPartsDesc>
+  <KiiroSchizonepetaGum_HealMissingPartsLabel>Super regeneration</KiiroSchizonepetaGum_HealMissingPartsLabel>
+  <KiiroSchizonepetaGum_HealMissingPartsDesc>When enabled, gum effect will restore missing body part.</KiiroSchizonepetaGum_HealMissingPartsDesc>
   <KiiroSchizonepetaGum_VisualEffectLabel>Enable visual effects</KiiroSchizonepetaGum_VisualEffectLabel>
   <KiiroSchizonepetaGum_VisualEffectDesc>Shows healing effects around pawns chewing gum. Disable to save performance.</KiiroSchizonepetaGum_VisualEffectDesc>
   <KiiroSchizonepetaGum_SoundEffectLabel>Enable chewing gum sound</KiiroSchizonepetaGum_SoundEffectLabel>

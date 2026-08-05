@@ -4,7 +4,7 @@
   <!-- ================================================== -->
   <!-- 荆芥口香糖间歇音效                                   -->
   <!--                                                     -->
-  <!-- Kiiro_LaoWuSound：hediff 期间每 3600 tick 播一次     -->
+  <!-- Kiiro_LaoWuSound：hediff 期间每 6000 tick 播一次     -->
   <!--   - AudioGrain_Folder 从 Sounds/LaoWu/ 随机选一条    -->
   <!--   - 用户将音效文件命名为 LaoWu1.wav ~ LaoWu10.wav    -->
   <!--     放入 Sounds/LaoWu/ 目录即可                      -->

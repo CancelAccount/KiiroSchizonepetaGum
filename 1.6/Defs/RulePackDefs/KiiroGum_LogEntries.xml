@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <!-- ================================================== -->
+  <!-- Kiiro_Event_LaoWuScream：hediff 期间每 6000 tick     -->
+  <!--   随机组合 LaoWuAction/LaoWuModifier/LaoWuContent     -->
+  <!--   三种占位符生成一条老吴日志                           -->
+  <!-- ================================================== -->
+  <RulePackDef>
+    <defName>Kiiro_Event_LaoWuScream</defName>
+    <rulePack>
+      <rulesStrings>
+        <!-- 主规则：随机选一条句式，组合三种占位符 -->
+        <li>r_logentry->[SUBJECT_definite] [LaoWuModifier] [LaoWuAction]ed out: "[LaoWuContent]"</li>
+        <li>r_logentry->"[LaoWuContent]" burst from [SUBJECT_definite]'s mouth, like a [LaoWuModifier] [LaoWuAction].</li>
+
+        <!-- Action (LaoWuAction): the vocal action -->
+        <li>LaoWuAction->howl</li>
+        <li>LaoWuAction->vocalize</li>
+        <li>LaoWuAction->scream</li>
+        <li>LaoWuAction->bawl</li>
+        <li>LaoWuAction->chirp</li>
+        <li>LaoWuAction->chant</li>
+
+        <!-- Modifier (LaoWuModifier): how the action is performed -->
+        <li>LaoWuModifier->loudly</li>
+        <li>LaoWuModifier->suddenly</li>
+        <li>LaoWuModifier->inexplicably</li>
+        <li>LaoWuModifier->heart-rendingly</li>
+        <li>LaoWuModifier->eerily</li>
+        <li>LaoWuModifier->incessantly</li>
+
+        <!-- Content (LaoWuContent): the scream content, phonetic transcription (pinyin) -->
+        <!-- Preserves the original "Lao Wu" comedic vocal effect across languages -->
+        <li>LaoWuContent->Ao~ni gao ni gao ni gao ni gao ni gao ni~</li>
+        <li>LaoWuContent->le le le le le le lei le le le le le le lei</li>
+        <li>LaoWuContent->Ou~ao wu ao wu ao wu ao wu ao wu</li>
+        <li>LaoWuContent->Wa~ao~wa~ao~wa~ao~wa~ao~ha!</li>
+        <li>LaoWuContent->Lao Wu o~Lao Wu o Lao Wu Lao Wu Lao Wu Lao Wu</li>
+        <li>LaoWuContent->a ni ge ni ge ni ge ni ge ni ge</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+</Defs>

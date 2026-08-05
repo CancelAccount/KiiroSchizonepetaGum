@@ -35,7 +35,6 @@ namespace KiiroSchizonepetaGum
 
             // 复选框：是否允许修复断肢
             // CheckboxLabeled(label, ref checkOn, tooltip)
-            // label 和 tooltip 用翻译 key，RimWorld 根据游戏语言加载对应翻译
             listing.CheckboxLabeled(
                 "KiiroSchizonepetaGum_HealMissingPartsLabel".Translate(),
                 ref Settings.healMissingParts,

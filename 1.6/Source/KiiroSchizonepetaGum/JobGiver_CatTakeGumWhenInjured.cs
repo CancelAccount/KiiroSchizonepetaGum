@@ -8,9 +8,7 @@ namespace KiiroSchizonepetaGum
     /// 受伤的猫自动寻找并服用口香糖的 JobGiver。
     /// 通过 ThinkTreeDef 的 insertTag="Animal_PreMain" 注入到动物行为树。
     ///
-    /// 为什么不用 WorkGiver？
-    ///   猫的 trainability=None（见 Races_Animal_CatGroup.xml:26），
-    ///   不走 WorkGiver 系统，必须用 ThinkNode_JobGiver 注入到 ThinkTree。
+    /// 猫没有中级训练度，因此用不了 WorkGiver。
     ///
     /// 触发条件：
     ///   1. pawn 是猫（Cat）
@@ -18,7 +16,8 @@ namespace KiiroSchizonepetaGum
     ///   3. pawn 有需要包扎的伤口（HasHediffsNeedingTend）
     ///   4. pawn 身上没有口香糖 hediff（避免重复服用）
     ///   5. 地图上有可到达的口香糖
-    ///
+    /// 其实这个寻找机制依旧无法让猫在部分情况下去主动找药（比如开启了复原残肢且猫有被毁器官无伤口时），但是考虑到猫的智商，就这样罢。
+    /// 
     /// 参考：
     ///   - ThinkNode_JobGiver：基类，TryGiveJob 返回 Job
     ///   - JobGiver_PatientGoToBed：动物受伤后去床上休息的 JobGiver
@@ -61,7 +60,7 @@ namespace KiiroSchizonepetaGum
                 return null;
             }
 
-            // 条件 2：必须是玩家阵营的猫（野生猫不自动吃药）
+            // 条件 2：必须是玩家阵营的（野基米有野人帮忙bushi）
             if (pawn.Faction != Faction.OfPlayer)
             {
                 return null;

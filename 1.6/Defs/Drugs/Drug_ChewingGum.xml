@@ -13,10 +13,15 @@
     <descriptionHyperlinks>
       <HediffDef>Kiiro_SchizonepetaGumHigh</HediffDef>
     </descriptionHyperlinks>
-    <!-- 图标：对应文件 1.6/Textures/Things/Item/Drug/SchizonepetaGum.png -->
+    <!-- 图标：按堆叠数量分级显示不同贴图
+         texPath 指向文件夹，Graphic_Collection 会加载其中的贴图：
+           SchizonepetaGum_1.png → subGraphics[0]（单个）
+           SchizonepetaGum_2.png → subGraphics[1]（2~50个）
+           SchizonepetaGum_3.png → subGraphics[2]（51+个）
+         贴图位于根目录 Textures/Things/Item/Drug/SchizonepetaGum/ -->
     <graphicData>
       <texPath>Things/Item/Drug/SchizonepetaGum</texPath>
-      <graphicClass>Graphic_StackCount</graphicClass>
+      <graphicClass>KiiroSchizonepetaGum.Graphic_StackCountByThreshold</graphicClass>
     </graphicData>
     <socialPropernessMatters>false</socialPropernessMatters>
     <rotatable>false</rotatable>
