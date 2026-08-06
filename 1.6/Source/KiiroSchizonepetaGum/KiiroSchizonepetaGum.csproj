@@ -51,17 +51,17 @@
     <Compile Include="HediffComp_SlowRegen\HediffComp_SlowRegen.cs" />
     <Compile Include="HediffComp_TendWounds\HediffCompProperties_SlowTend.cs" />
     <Compile Include="HediffComp_TendWounds\HediffComp_SlowTend.cs" />
-    <Compile Include="KiiroSchizonepetaGumMod.cs" />
-    <Compile Include="KiiroSchizonepetaGumSettings.cs" />
-    <Compile Include="ThoughtWorker_AteSchizonepetaGum.cs" />
-    <Compile Include="WorkGiver_TakeGumWhenInjured.cs" />
-    <Compile Include="JobGiver_CatTakeGumWhenInjured.cs" />
     <Compile Include="HediffComp_VisualEffect\HediffCompProperties_VisualEffect.cs" />
     <Compile Include="HediffComp_VisualEffect\HediffComp_VisualEffect.cs" />
     <Compile Include="HediffComp_SoundPlayer\HediffCompProperties_SoundPlayer.cs" />
     <Compile Include="HediffComp_SoundPlayer\HediffComp_SoundPlayer.cs" />
     <Compile Include="HediffComp_SoundPlayer\BattleLogEntry_LaoWuScream.cs" />
+    <Compile Include="KiiroSchizonepetaGumMod.cs" />
+    <Compile Include="ThoughtWorker_AteSchizonepetaGum.cs" />
     <Compile Include="Graphic_StackCountByThreshold.cs" />
+    <Compile Include="ModSettings\KiiroSchizonepetaGumSettings.cs" />
+    <Compile Include="WorkGivers\WorkGiver_TakeGumWhenInjured.cs" />
+    <Compile Include="WorkGivers\JobGiver_CatTakeGumWhenInjured.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
