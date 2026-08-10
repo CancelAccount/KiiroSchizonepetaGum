@@ -57,8 +57,8 @@
     <Compile Include="HediffComp_SoundPlayer\HediffComp_SoundPlayer.cs" />
     <Compile Include="HediffComp_SoundPlayer\BattleLogEntry_LaoWuScream.cs" />
     <Compile Include="KiiroSchizonepetaGumMod.cs" />
-    <Compile Include="ThoughtWorker_AteSchizonepetaGum.cs" />
-    <Compile Include="Graphic_StackCountByThreshold.cs" />
+    <Compile Include="ThoughtWorkers\ThoughtWorker_AteSchizonepetaGum.cs" />
+    <Compile Include="Graphics\Graphic_StackCountByThreshold.cs" />
     <Compile Include="ModSettings\KiiroSchizonepetaGumSettings.cs" />
     <Compile Include="WorkGivers\WorkGiver_TakeGumWhenInjured.cs" />
     <Compile Include="WorkGivers\JobGiver_CatTakeGumWhenInjured.cs" />
