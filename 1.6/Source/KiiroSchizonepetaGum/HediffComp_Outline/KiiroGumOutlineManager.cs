@@ -258,6 +258,33 @@ namespace KiiroSchizonepetaGum
                 }
                 return;
             }
+            // 游泳时（人类游泳 job / 非人类在水中用游泳图形）：本体沉入水中只露头，
+            // 官方走渲染树特殊路径（NoBody，只画头，PawnRenderer L425-426），完整站立
+            // 合成帧与本体不一致 → 跳过描边。注意游泳时 GetPosture() 仍是 Standing，
+            // 故必须在此单独判定，不能并入上面的站姿检查。
+            if (pawn.Swimming || pawn.DrawNonHumanlikeSwimmingGraphic)
+            {
+                if (OutlineConfig.DebugLogging)
+                {
+                    DebugLogOnce($"swimming-{pawn.thingIDNumber}", $"{pawn.LabelShort} 暂不绘制：游泳中（本体仅露头，无全身轮廓）");
+                }
+                return;
+            }
+            // 本体渲染 alpha < 1（隐身/半透明）→ 跳过描边：实心描边会在本体透明/半透明时
+            // 突兀地暴露 pawn。判断依据用 InvisibilityUtility.GetAlpha（本体实际渲染 tint alpha，
+            // PawnRenderer.GetDrawParms L643 同款来源）而非 IsPsychologicallyInvisible：
+            // 后者对"心理隐身但对玩家可见"的 pawn（如绮罗夜行衣 visibleToPlayer=true，
+            // HediffComp_Invisibility.GetAlpha 恒返回 1）也返回 true，会误伤——夜行衣本体
+            // 正常可见（alpha=1），描边应保留。GetAlpha < 1 才能同时正确区分两种情况。
+            float bodyAlpha = InvisibilityUtility.GetAlpha(pawn);
+            if (bodyAlpha < 1f)
+            {
+                if (OutlineConfig.DebugLogging)
+                {
+                    DebugLogOnce($"invisible-{pawn.thingIDNumber}", $"{pawn.LabelShort} 暂不绘制：本体渲染 alpha={bodyAlpha:F2}（隐身/半透明中）");
+                }
+                return;
+            }
 
             // 取 atlas 合成帧（类人由官方烘焙；猫由本模块在脏帧时主动烘焙）
             if (!GlobalTextureAtlasManager.TryGetPawnFrameSet(pawn, out PawnTextureAtlasFrameSet frameSet, out _, true))

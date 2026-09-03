@@ -124,8 +124,8 @@
 
 ```csharp
 // 每帧对每个目标 pawn：
-// 0. 全局早退：非 Windows / shader 加载失败 / 设置关闭 / 镜头过远（ZoomRootSize ≥ 相机最大 RootSize × 0.7）
-if (Find.CameraDriver.ZoomRootSize >= Find.CameraDriver.config.sizeRange.max * 0.7f) return;  // 远景 pawn 过小，停用省性能
+// 0. 全局早退：非 Windows / shader 加载失败 / 设置关闭 / 镜头过远（ZoomRootSize ≥ 相机最大 RootSize × 0.6）
+if (Find.CameraDriver.ZoomRootSize >= Find.CameraDriver.config.sizeRange.max * 0.6f) return;  // 远景 pawn 过小，停用省性能
 if (!GlobalTextureAtlasManager.TryGetPawnFrameSet(pawn, out PawnTextureAtlasFrameSet fs, out _, true))
     return;
 int index = fs.GetIndex(pawn.Rotation, PawnDrawMode.BodyAndHead);
@@ -146,7 +146,7 @@ GenDraw.DrawMeshNowOrLater(fs.meshes[index], matrix, mat, false, mpb);
 
 | 文件 | 内容 |
 |---|---|
-| 新增 `1.6/Defs/ShaderTypeDefs/KiiroGum_Outline.xml` | `ShaderTypeDef`：`shaderPath = KiiroOutline`（引用 AB 包内 shader） |
+| 新增 `1.6/Defs/ShaderTypeDefs/KiiroGum_Outline.xml` | `ShaderTypeDef`：`shaderPath = KiiroGumOutline`（引用 AB 包内 shader） |
 | 修改 `1.6/Defs/HediffDefs/Hediff_ChewingGum.xml` | 在 `comps` 增加 `<li Class="KiiroSchizonepetaGum.HediffCompProperties_Outline">` |
 | 语言文件 | 新增 Keyed 翻译：设置项标签/描述（中英） |
 
@@ -198,13 +198,40 @@ GenDraw.DrawMeshNowOrLater(fs.meshes[index], matrix, mat, false, mpb);
 | 描边层穿墙/穿地形 | 与 pawn 本体同为 2D 层排序，行为与原版一致，属引擎固有行为，不做额外处理 |
 | atlas 图集整体重建导致旧材质引用失效 | MaterialPool 按 (texture, shader) 键缓存，图集重建后新键自动生成新材质 |
 
-## 9. 测试验证计划
+## 9. 方案选型备忘（为什么是"片元邻域扩散"，而非其它描边方案）
+
+> 本节沉淀开发过程中的历次方案论证，供后续维护者理解"为什么最终是现在这个实现"、
+> 避免重复走弯路。核心决策链：**输入是单张合成帧 quad（形状在 alpha 里，mesh 无轮廓几何）＋
+> 需求要"只描最外层、内部缝隙干净"＋ RimWorld 是 2D 画家算法无深度缓冲** → 三个约束
+> 共同排除了所有"几何/全局/多遍"候选，唯一同时满足三者的是局部片元邻域扩散。
+
+### 9.1 候选方案逐一否决原因
+
+| 方案 | 核心思路 | 被否决的根本原因 |
+|---|---|---|
+| **几何膨胀 / 多向偏移壳法** | mesh 顶点沿法线外扩，或同 mesh 沿 8~16 个屏幕方向各偏移 1px 叠加出描边壳 | ① 轮廓信息在 atlas **alpha 贴图**里，mesh 只是覆盖帧区域的 quad，没有可外扩的轮廓几何，顶点膨胀只能得到"方盒子"；② 偏移壳对内部分缝隙的**内边界**同样外扩 → 缝隙被填成实心或出两条内部描边线，做不到"内部细节干净"（需求硬指标）；③ 8/16 向离散化在斜角/外凸角缺角不均匀 |
+| **CPU 形态学（回读像素）** | `ReadPixels` 回读 atlas → C# 里做 erode/dilate → 生成描边纹理 | ① `ReadPixels` 是同步 stall：CPU 等 GPU flush + 拷回，且 RenderTexture 操作只能在主线程 → 平时零开销、换装/转向脏帧扎堆时 2~8 ms/pawn 尖峰；② 回读还需确保官方烘焙先完成，时序纠缠；③ `GetPixels` 每帧分配 Color[] 产生 GC。属于"把 GPU 免费运算搬回 CPU 高价做" |
+| **屏幕空间后处理法** | 相机渲染完后对整屏做边缘检测（sobel 等）着色轮廓 | ① 边缘检测的价值前提是**有深度缓冲**区分前后遮挡，RimWorld 是画家算法无深度，后处理只能描出"与一切的交界"，无法判断谁挡谁；② 要"只描目标 pawn"还得额外渲染 mask 纹理区分，成本随目标数增长；③ 采样成本与**全屏分辨率**挂钩（百万像素级），而目标 pawn 只占几万像素，性价比极差；④ 需接管相机渲染后阶段，与官方自定义 RT 管线/雾/水体等效果冲突 |
+| **模板缓冲法（stencil）** | pass1 把 pawn 轮廓写入 stencil → pass2 放大轮廓并做 stencil 测试只描外圈 | ① 第一步就要"画轮廓写 stencil"，但轮廓在 alpha 贴图里、无轮廓几何可写；② 放大靠几何外扩或片元内查询邻域，而 **stencil 无法在片元内做邻域采样**，绕回邻域扩散；③ stencil 是屏幕缓冲全局操作，描边被迫在所有绘制之后执行 → 画在所有物体**之上**，层序错误（本需求要求描边被 pawn 本体与 y 更高建筑覆盖）；④ 原版大量效果已在用 stencil，有污染风险；⑤ 多 pass（≥2 次绘制/目标 vs 现方案 1 次） |
+
+### 9.2 可迁移经验（对 RimWorld mod 渲染类功能通用）
+
+1. **信息所在的"层"决定技术路线**：轮廓在几何 mesh 上 → 才能用几何膨胀/模板；轮廓在 alpha 贴图里 → 只能做**逐像素邻域判断**。先定位数据在哪一层，再选方案。
+2. **2D 画家算法（无深度）是硬约束**：所有依赖深度缓冲的全局方案（后处理边缘检测、深度描边、遮挡剔除）在此场景前提不成立。"遮挡"靠 y 层排序模拟，描边也必须遵守同一排序（在 pawn 下层提交、被本体覆盖）。
+3. **把问题降维到对象局部**：需求局限在"pawn 帧区域"内 → 一切全局化手段（全屏 RT、整屏采样、屏幕缓冲）都是浪费。成本应挂钩 **pawn 屏幕面积**而非全屏。
+4. **"只描最外层、内部缝隙干净"本质是一个逐像素内外区分问题**，在片元着色器里免费成立；任何试图用"画几遍/外扩几层"模拟的方案都会在缝隙处漏馅。
+5. **单 pass 优先**：每目标每帧 1 次 DrawMesh（GPU 采样多花点）优于多遍绘制（CPU 提交 ×N + overdraw ×N）。RimWorld pawn 数量多、屏幕占比小，CPU 提交数与合批更值钱。
+6. **别把 GPU 的活搬回 CPU**：涉及逐像素形态学的需求，宁可写 shader（哪怕邻域 81 采样），也不要 ReadPixels 回读做 C# 循环——回读的 stall 与主线程约束不可摊销，是最差的性能模式。
+7. **先质疑"标准做法"在特定引擎下的前提**：屏幕空间描边、stencil 描边在 3D 深度引擎里是教科书方案，但在 RimWorld 里它们的隐含前提（深度缓冲、几何轮廓）全部不成立。选型第一步是检查候选方案的前提是否满足，而非直接套用业界最佳实践。
+8. **用"渲染输出"而非"逻辑状态"判断可见性**：判断描边是否该跳过，要看本体**实际渲染 alpha**（`InvisibilityUtility.GetAlpha`，即 `PawnRenderer.GetDrawParms` 里的 tint alpha），而非逻辑标志 `IsPsychologicallyInvisible`。后者对"心理隐身但对玩家可见"的 pawn 也返回 true（如绮罗夜行衣 `visibleToPlayer=true`，`HediffComp_Invisibility.GetAlpha` 恒返回 1，本体正常可见），会误伤导致"本体可见但描边消失"。渲染类判定应以最终像素 alpha 为准。
+
+## 10. 测试验证计划
 
 1. **基础**：类人 pawn 获得口香糖 hediff → 外描边出现；移除/消退 → 描边消失。**猫（动物）食用后同样有描边**（非类人主动烘焙路径）。
 2. **合成外观**：换装（外套/披风/头饰）→ 描边跟随最外层变化；内部褶皱不描边。
 3. **朝向/姿态**：四朝向正常；躺卧、倒地、死亡状态暂不描边（渲染树特殊路径，属已知取舍）。
 4. **遮挡**：衣物遮身不外露；发丝缝隙不描边。
-5. **缩放**：近景/中景均渲染（主动烘焙，不依赖官方 atlas 缓存条件）；镜头拉到最远两档（≥ 相机最大 RootSize × 0.7）描边停用。
+5. **缩放**：近景/中景均渲染（主动烘焙，不依赖官方 atlas 缓存条件）；镜头拉到最远两档（≥ 相机最大 RootSize × 0.6）描边停用。
 6. **平台/AB**：Windows 正常；AB 缺失时控制台输出停用警告且完全无渲染（无回退副作用）。
 7. **性能**：数十个目标 pawn 时帧耗时无明显变化；关闭开关后零开销。
 8. **设置**：颜色/宽度实时生效并持久化。
