@@ -14,16 +14,24 @@ using UnityEngine;
 ///   D3D11 编译的 shader AB，导致 Linux/Mac 玩家加载失败或渲染错误。
 ///
 /// 自动从工程位置向上查找 About/About.xml 定位 mod 根目录，
-/// 把 Assets/Data/KiiroSchizonepetaGum/Materials/KiiroGumOutline.shader 打成
+/// 把 Assets/Data/Cancelation.KiiroSchizonepetaGum/Materials/KiiroGumOutline.shader
+/// （路径前缀 = packageId，见 AssetPaths 注释）打成
 /// LZ4 压缩 AB，输出 kiirogum_win 到 mod 的 1.6/AssetBundles/。
 /// </summary>
 public static class BuildKiiroGumAssetBundles
 {
-    /// <summary>要打进 AB 的资源完整路径（必须与 ContentFinder 查找规则一致：
-    /// Assets/Data/&lt;Mod文件夹名&gt;/Materials/&lt;shaderPath&gt;.shader）。</summary>
+    /// <summary>要打进 AB 的资源完整路径。必须与 RimWorld 的运行时查找规则匹配：
+    /// ContentFinder.TryFindAssetInModBundles 依次尝试两个前缀（见反编译源码 L92-L118）：
+    ///   1) Assets/Data/&lt;mod文件夹名&gt;/...   —— 本地开发文件夹名命中，但创意工坊订阅后
+    ///      玩家侧文件夹名是 workshop id，该前缀失效；
+    ///   2) Assets/Data/&lt;PackageIdPlayerFacing&gt;/... —— 取 About.xml 的 packageId
+    ///      （本 mod 为 Cancelation.KiiroSchizonepetaGum），非官方 mod 必查，与文件夹名无关，
+    ///      本地与创意工坊均稳定命中。
+    /// 因此资源路径使用 packageId 前缀（不能硬编码文件夹名）。
+    /// 后缀固定为 Materials/&lt;shaderPath&gt;.shader（GenFilePaths.ContentPath&lt;Shader&gt;）。</summary>
     private static readonly string[] AssetPaths =
     {
-        "Assets/Data/KiiroSchizonepetaGum/Materials/KiiroGumOutline.shader"
+        "Assets/Data/Cancelation.KiiroSchizonepetaGum/Materials/KiiroGumOutline.shader"
     };
 
     /// <summary>bundle 名（带 RimWorld Windows 平台后缀，见类头注释）。</summary>

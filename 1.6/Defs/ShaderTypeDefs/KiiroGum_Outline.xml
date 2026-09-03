@@ -4,10 +4,12 @@
   <!-- ================================================== -->
   <!-- ShaderTypeDef：外描边 shader                        -->
   <!-- 从本 mod 的 AssetBundles（1.6/AssetBundles/）加载，  -->
-  <!-- AB 内资源完整路径：Assets/Data/KiiroSchizonepetaGum/ -->
-  <!-- Materials/KiiroGumOutline.shader                    -->
-  <!-- （查找规则见 ContentFinder.TryFindAssetInModBundles  -->
-  <!--   与 GenFilePaths.ContentPath&lt;Shader&gt;）           -->
+  <!-- AB 内资源完整路径：Assets/Data/Cancelation.KiiroSchizonepetaGum/Materials/KiiroGumOutline.shader-->                                          -->
+  <!-- 前缀必须 = About.xml 的 packageId（不能是 mod 文件夹 -->
+  <!-- 名）：运行时 ContentFinder.TryFindAssetInModBundles  -->
+  <!-- 依次尝试 {文件夹名} 与 {packageId} 两个前缀，创意工坊 -->
+  <!-- 订阅后文件夹名是 workshop id，只有 packageId 稳定。  -->
+  <!-- （GenFilePaths.ContentPath&lt;Shader&gt; = Materials/） -->
   <!-- AB 缺失时 RimWorld 自动回退默认 Cutout shader 并警告 -->
   <!-- ================================================== -->
   <ShaderTypeDef>

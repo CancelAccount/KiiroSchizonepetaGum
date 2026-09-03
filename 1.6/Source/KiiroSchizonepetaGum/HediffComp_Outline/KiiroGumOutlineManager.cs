@@ -144,6 +144,9 @@ namespace KiiroSchizonepetaGum
                         shader = null;
                     }
                     outlineShaderInt = shader;
+                    // 当代码块中全都不执行时，字符串拼接会触发编译期常量门槛保护
+                    //（OutlineConfig.DebugLogging = false 时整块被死代码消除，零字符串分配）
+                    // 这样做的好处是在release版本中，没有字符串拼接，从而降低了GC压力
                     if (OutlineConfig.DebugLogging)
                     {
                         if (shader != null)
