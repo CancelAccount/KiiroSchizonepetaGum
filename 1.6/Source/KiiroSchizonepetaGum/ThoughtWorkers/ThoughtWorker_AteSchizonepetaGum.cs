@@ -10,12 +10,6 @@ namespace KiiroSchizonepetaGum
     /// </summary>
     public class ThoughtWorker_AteSchizonepetaGum : ThoughtWorker
     {
-        /// <summary>绮罗族的 ThingDef defName（见 Race_Kiiro.xml）。</summary>
-        private const string KiiroRaceDefName = "Kiiro_Race";
-
-        /// <summary>口香糖 hediff 的 defName（见 Hediff_ChewingGum.xml）。</summary>
-        private const string GumHediffDefName = "Kiiro_SchizonepetaGumHigh";
-
         /// <summary>
         /// 当前状态：检查 pawn 是否有口香糖 hediff，并根据种族选择 stage。
         /// stage 0：其他种族（baseMoodEffect = 3）
@@ -32,15 +26,15 @@ namespace KiiroSchizonepetaGum
             }
 
             // 检查是否有口香糖 hediff（DefDatabase 缓存查找）
-            HediffDef gumHediff = HediffDef.Named(GumHediffDefName);
+            HediffDef gumHediff = HediffDef.Named(Config.GumHediffDefName);
             if (!p.health.hediffSet.HasHediff(gumHediff))
             {
                 return false;
             }
 
             // 绮罗族用 stage 1（+8），其他种族用 stage 0（+3）
-            // 绮罗族 ThingDef defName = "Kiiro_Race"（AlienRace 框架定义）
-            if (p.def.defName == KiiroRaceDefName)
+            // 绮罗族 ThingDef defName 见 Config.KiiroRaceDefName（AlienRace 框架定义）
+            if (p.def.defName == Config.KiiroRaceDefName)
             {
                 return ThoughtState.ActiveAtStage(1);
             }

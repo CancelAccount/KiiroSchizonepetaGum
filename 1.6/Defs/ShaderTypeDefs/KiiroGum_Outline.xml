@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <!-- ================================================== -->
+  <!-- ShaderTypeDef：外描边 shader                        -->
+  <!-- 从本 mod 的 AssetBundles（1.6/AssetBundles/）加载，  -->
+  <!-- AB 内资源完整路径：Assets/Data/KiiroSchizonepetaGum/ -->
+  <!-- Materials/KiiroGumOutline.shader                    -->
+  <!-- （查找规则见 ContentFinder.TryFindAssetInModBundles  -->
+  <!--   与 GenFilePaths.ContentPath&lt;Shader&gt;）           -->
+  <!-- AB 缺失时 RimWorld 自动回退默认 Cutout shader 并警告 -->
+  <!-- ================================================== -->
+  <ShaderTypeDef>
+    <defName>KiiroGum_Outline</defName>
+    <label>KiiroGum outline</label>
+    <shaderPath>KiiroGumOutline</shaderPath>
+  </ShaderTypeDef>
+
+</Defs>

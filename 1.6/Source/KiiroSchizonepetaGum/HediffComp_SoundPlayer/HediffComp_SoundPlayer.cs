@@ -25,8 +25,8 @@ namespace KiiroSchizonepetaGum
         public HediffCompProperties_SoundPlayer Props => (HediffCompProperties_SoundPlayer)props;
 
         /// <summary>上次播放音效的真实时间点（Time.realtimeSinceStartup）。
-        /// 初始 -100f 确保首次达到间隔 tick 时即可触发，无需等待。</summary>
-        private float lastPlayRealTime = -100f;
+        /// 初始 SoundPlayerConfig.NeverPlayedRealTime 确保首次达到间隔 tick 时即可触发，无需等待。</summary>
+        private float lastPlayRealTime = SoundPlayerConfig.NeverPlayedRealTime;
 
         /// <summary>
         /// 每 tick 调用：按间隔触发音效播放，带真实时间防重叠。

@@ -56,6 +56,15 @@
         <!-- 日志条目图标（相对 Textures/，不带扩展名） -->
         <logEntryIconPath>UI/Icons/LaoWuScream</logEntryIconPath>
       </li>
+      <!-- 外描边：药效期间为人物绘制合成外观（身体+衣物+发型）的外描边
+           shader：AssetBundles 内 KiiroGumOutline（见 Defs/ShaderTypeDefs/KiiroGum_Outline.xml）
+           颜色/宽度可被玩家在 mod 设置中实时覆盖 -->
+      <li Class="KiiroSchizonepetaGum.HediffCompProperties_Outline">
+        <outlineColor>(0.4, 0.8, 0.2)</outlineColor>
+        <outlineWidth>2</outlineWidth>
+        <!-- 内部孔洞填充半径：发丝缝隙等细缝被填充，不产生独立描边线 -->
+        <holeRadius>1</holeRadius>
+      </li>
     </comps>
     <stages>
       <li>

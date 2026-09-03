@@ -25,26 +25,20 @@ namespace KiiroSchizonepetaGum
     /// </summary>
     public class JobGiver_CatTakeGumWhenInjured : ThinkNode_JobGiver
     {
-        /// <summary>猫的 ThingDef defName（见 Races_Animal_CatGroup.xml:6）。</summary>
-        private const string CatDefName = "Cat";
-
-        /// <summary>口香糖的 ThingDef defName（见 Drug_ChewingGum.xml）。</summary>
-        private const string GumDefName = "Kiiro_SchizonepetaGum";
-
-        /// <summary>口香糖 hediff 的 defName（见 Hediff_ChewingGum.xml）。</summary>
-        private const string GumHediffDefName = "Kiiro_SchizonepetaGumHigh";
-
         /// <summary>口香糖 ThingDef 缓存（避免每次调用都查 DefDatabase）。</summary>
         private static ThingDef _gumDef;
 
         /// <summary>获取口香糖 ThingDef（首次访问时缓存）。</summary>
-        private static ThingDef GumDef => _gumDef ??= ThingDef.Named(GumDefName);
+        private static ThingDef GumDef => _gumDef ??= ThingDef.Named(Config.GumDefName);
 
         /// <summary>口香糖 hediff Def 缓存。</summary>
         private static HediffDef _gumHediffDef;
 
         /// <summary>获取口香糖 hediff Def（首次访问时缓存）。</summary>
-        private static HediffDef GumHediffDef => _gumHediffDef ??= HediffDef.Named(GumHediffDefName);
+        private static HediffDef GumHediffDef => _gumHediffDef ??= HediffDef.Named(Config.GumHediffDefName);
+
+        /// <summary>上次全图搜索口香糖的 tick（节流用，避免受伤猫每 tick 重复 BFS）。</summary>
+        private int _lastSearchTick = WorkGiversConfig.NeverSearchedTick;
 
         /// <summary>
         /// 尝试为猫生成"去拿口香糖并服用"的 Job。
@@ -55,7 +49,7 @@ namespace KiiroSchizonepetaGum
         protected override Job TryGiveJob(Pawn pawn)
         {
             // 条件 1：必须是猫
-            if (pawn.def.defName != CatDefName)
+            if (pawn.def.defName != WorkGiversConfig.CatDefName)
             {
                 return null;
             }
@@ -79,6 +73,16 @@ namespace KiiroSchizonepetaGum
                 return null;
             }
 
+            // 节流：BFS 全图搜索较贵，限制搜索频率。
+            // 受伤猫每 tick 都会评估行为树，若地图上无口香糖则会每 tick 失败搜索一次；
+            // 记录上次搜索 tick，每 WorkGiversConfig.CatSearchThrottleTicks tick 才允许重新搜索。
+            int ticksGame = Find.TickManager.TicksGame;
+            if (ticksGame - this._lastSearchTick < WorkGiversConfig.CatSearchThrottleTicks)
+            {
+                return null;
+            }
+            this._lastSearchTick = ticksGame;
+
             // 条件 5：地图上必须有可到达的口香糖
             // 用 GenClosest.ClosestThingReachable 代替遍历全部：
             //   - 内部用 BFS 区域搜索，从猫的位置向外扩展
@@ -89,7 +93,7 @@ namespace KiiroSchizonepetaGum
                 ThingRequest.ForDef(GumDef),
                 PathEndMode.Touch,
                 TraverseParms.For(pawn, pawn.NormalMaxDanger()),
-                9999f,
+                WorkGiversConfig.CatSearchMaxDistance,
                 (Thing t) => pawn.CanReserve(t, 1, -1, null, false));
 
             if (gum2 == null)

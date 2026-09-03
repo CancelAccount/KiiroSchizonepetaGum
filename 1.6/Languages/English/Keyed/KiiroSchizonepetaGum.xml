@@ -11,6 +11,12 @@
   <KiiroSchizonepetaGum_SoundEffectDesc>Periodically plays a sound effect while chewing gum.</KiiroSchizonepetaGum_SoundEffectDesc>
   <KiiroSchizonepetaGum_SoundVolumeLabel>Sound volume</KiiroSchizonepetaGum_SoundVolumeLabel>
   <KiiroSchizonepetaGum_SoundVolumeDesc>Adjusts the volume of the chewing gum sound effect. Well, do you want to hear it more clearly?</KiiroSchizonepetaGum_SoundVolumeDesc>
+  <KiiroSchizonepetaGum_OutlineLabel>Enable pawn outline</KiiroSchizonepetaGum_OutlineLabel>
+  <KiiroSchizonepetaGum_OutlineDesc>Draws an outer outline around pawns chewing gum. Disable to save performance.</KiiroSchizonepetaGum_OutlineDesc>
+  <KiiroSchizonepetaGum_OutlineWidthLabel>Outline width</KiiroSchizonepetaGum_OutlineWidthLabel>
+  <KiiroSchizonepetaGum_OutlineWidthDesc>Adjusts the width of the outline.</KiiroSchizonepetaGum_OutlineWidthDesc>
+  <KiiroSchizonepetaGum_OutlineColorLabel>Outline color</KiiroSchizonepetaGum_OutlineColorLabel>
+  <KiiroSchizonepetaGum_OutlineColorDesc>Click a color swatch to change the outline color.</KiiroSchizonepetaGum_OutlineColorDesc>
 
   <!-- 健康面板 tooltip 文本（CompTipStringExtra） -->
   <!-- Health Panel Tooltip -->

@@ -12,12 +12,9 @@ namespace KiiroSchizonepetaGum
     /// </summary>
     public class Graphic_StackCountByThreshold : Graphic_StackCount
     {
-        /// <summary>少量堆叠的数量上限（含）。2~此值显示第2张贴图。</summary>
-        private const int MidStackThreshold = 50;
-
         /// <summary>
         /// 根据物品堆叠数量选择对应的子贴图。
-        /// 重写原版逻辑，使 3 贴图模式下按 1 / 2-50 / 51+ 分级。
+        /// 重写原版逻辑，使 3 贴图模式下按 1 / 2~GraphicConfig.MidStackThreshold / 超过分级。
         /// 非 3 贴图模式回退原版逻辑。
         /// </summary>
         /// <param name="thing">要绘制的物品（可为 null）。</param>
@@ -38,12 +35,12 @@ namespace KiiroSchizonepetaGum
                     // 单个：第1张贴图
                     return this.subGraphics[0];
                 }
-                if (thing.stackCount <= MidStackThreshold)
+                if (thing.stackCount <= GraphicConfig.MidStackThreshold)
                 {
-                    // 少量(2~50)：第2张贴图
+                    // 少量(2~MidStackThreshold)：第2张贴图
                     return this.subGraphics[1];
                 }
-                // 大量(51+)：第3张贴图
+                // 大量(MidStackThreshold+1)：第3张贴图
                 return this.subGraphics[2];
             }
 

@@ -47,20 +47,32 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Config.cs" />
     <Compile Include="HediffComp_SlowRegen\HediffCompProperties_SlowRegen.cs" />
     <Compile Include="HediffComp_SlowRegen\HediffComp_SlowRegen.cs" />
+    <Compile Include="HediffComp_SlowRegen\SlowRegenConfig.cs" />
     <Compile Include="HediffComp_TendWounds\HediffCompProperties_SlowTend.cs" />
     <Compile Include="HediffComp_TendWounds\HediffComp_SlowTend.cs" />
+    <Compile Include="HediffComp_TendWounds\SlowTendConfig.cs" />
     <Compile Include="HediffComp_VisualEffect\HediffCompProperties_VisualEffect.cs" />
     <Compile Include="HediffComp_VisualEffect\HediffComp_VisualEffect.cs" />
+    <Compile Include="HediffComp_VisualEffect\VisualEffectConfig.cs" />
     <Compile Include="HediffComp_SoundPlayer\HediffCompProperties_SoundPlayer.cs" />
     <Compile Include="HediffComp_SoundPlayer\HediffComp_SoundPlayer.cs" />
+    <Compile Include="HediffComp_SoundPlayer\SoundPlayerConfig.cs" />
     <Compile Include="HediffComp_SoundPlayer\BattleLogEntry_LaoWuScream.cs" />
+    <Compile Include="HediffComp_Outline\OutlineConfig.cs" />
+    <Compile Include="HediffComp_Outline\HediffCompProperties_Outline.cs" />
+    <Compile Include="HediffComp_Outline\HediffComp_Outline.cs" />
+    <Compile Include="HediffComp_Outline\KiiroGumOutlineManager.cs" />
+    <Compile Include="HediffComp_Outline\KiiroGumOutlineGameComponent.cs" />
     <Compile Include="KiiroSchizonepetaGumMod.cs" />
     <Compile Include="ThoughtWorkers\ThoughtWorker_AteSchizonepetaGum.cs" />
     <Compile Include="Graphics\Graphic_StackCountByThreshold.cs" />
+    <Compile Include="Graphics\GraphicConfig.cs" />
     <Compile Include="ModSettings\KiiroSchizonepetaGumSettings.cs" />
     <Compile Include="WorkGivers\WorkGiver_TakeGumWhenInjured.cs" />
+    <Compile Include="WorkGivers\WorkGiversConfig.cs" />
     <Compile Include="WorkGivers\JobGiver_CatTakeGumWhenInjured.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

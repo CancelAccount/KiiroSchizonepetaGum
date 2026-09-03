@@ -21,26 +21,17 @@ namespace KiiroSchizonepetaGum
     /// </summary>
     public class WorkGiver_TakeGumWhenInjured : WorkGiver_Scanner
     {
-        /// <summary>绮罗族的 ThingDef defName（见 Race_Kiiro.xml）。</summary>
-        private const string KiiroRaceDefName = "Kiiro_Race";
-
-        /// <summary>口香糖的 ThingDef defName（见 Drug_ChewingGum.xml）。</summary>
-        private const string GumDefName = "Kiiro_SchizonepetaGum";
-
-        /// <summary>口香糖 hediff 的 defName（见 Hediff_ChewingGum.xml）。</summary>
-        private const string GumHediffDefName = "Kiiro_SchizonepetaGumHigh";
-
         /// <summary>口香糖 ThingDef 缓存（避免每次调用都查 DefDatabase）。</summary>
         private static ThingDef _gumDef;
 
         /// <summary>获取口香糖 ThingDef（首次访问时缓存）。</summary>
-        private static ThingDef GumDef => _gumDef ??= ThingDef.Named(GumDefName);
+        private static ThingDef GumDef => _gumDef ??= ThingDef.Named(Config.GumDefName);
 
         /// <summary>口香糖 hediff Def 缓存。</summary>
         private static HediffDef _gumHediffDef;
 
         /// <summary>获取口香糖 hediff Def（首次访问时缓存）。</summary>
-        private static HediffDef GumHediffDef => _gumHediffDef ??= HediffDef.Named(GumHediffDefName);
+        private static HediffDef GumHediffDef => _gumHediffDef ??= HediffDef.Named(Config.GumHediffDefName);
 
         /// <summary>
         /// 工作物品请求：搜索地图上的口香糖。
@@ -65,7 +56,7 @@ namespace KiiroSchizonepetaGum
             }
 
             // 条件 2：pawn 必须是绮罗族
-            if (pawn.def.defName != KiiroRaceDefName)
+            if (pawn.def.defName != Config.KiiroRaceDefName)
             {
                 return false;
             }

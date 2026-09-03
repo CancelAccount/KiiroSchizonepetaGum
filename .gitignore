@@ -31,6 +31,18 @@ packages/
 1.6/Assemblies/*.pdb
 1.6/Assemblies/*.xml
 
+# ── Unity 工程（UnityProject/）──
+# Unity 自动生成目录与 AB 构建产物，可由 UnityProject/Assets 重新生成
+UnityProject/Library/
+UnityProject/Temp/
+UnityProject/Logs/
+UnityProject/obj/
+UnityProject/Build/
+UnityProject/UserSettings/
+UnityProject/*.csproj
+UnityProject/*.sln
+1.6/AssetBundles/
+
 # ── 操作系统产生的杂项文件 ──
 # Windows
 Thumbs.db

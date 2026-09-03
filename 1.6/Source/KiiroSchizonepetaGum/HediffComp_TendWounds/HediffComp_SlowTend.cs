@@ -25,7 +25,7 @@ namespace KiiroSchizonepetaGum
         /// </summary>
         public override void CompPostTick(ref float severityAdjustment)
         {
-            if (Pawn.IsHashIntervalTick(150))
+            if (Pawn.IsHashIntervalTick(SlowTendConfig.SlowTendIntervalTicks))
             {
                 TendOneBleedingWound();
             }

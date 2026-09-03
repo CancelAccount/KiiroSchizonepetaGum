@@ -33,7 +33,7 @@ namespace KiiroSchizonepetaGum
         /// </summary>
         public override void CompPostTick(ref float severityAdjustment)
         {
-            if (Pawn.IsHashIntervalTick(15))
+            if (Pawn.IsHashIntervalTick(SlowRegenConfig.SlowRegenIntervalTicks))
             {
                 TryRegenerate();
             }
@@ -49,8 +49,10 @@ namespace KiiroSchizonepetaGum
             }
 
             // 计算本次可用再生量
-            // 原版系数 0.00025：每 15 tick 触发一次，healAmountPerDay=N 对应每天恢复 N hp
-            float remaining = Props.healAmountPerDay * 0.00025f;
+            // 原版系数 0.00025（见 SlowRegenConfig.RegenHealFactorPerTick）：
+            // 每 SlowRegenConfig.SlowRegenIntervalTicks tick 触发一次，
+            // healAmountPerDay=N 对应每天恢复 N hp
+            float remaining = Props.healAmountPerDay * SlowRegenConfig.RegenHealFactorPerTick;
             if (remaining <= 0f)
             {
                 return;

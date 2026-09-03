@@ -10,6 +10,12 @@
   <KiiroSchizonepetaGum_SoundEffectDesc>嚼口香糖时播放基米的天籁之音(bushi)。</KiiroSchizonepetaGum_SoundEffectDesc>
   <KiiroSchizonepetaGum_SoundVolumeLabel>音效音量</KiiroSchizonepetaGum_SoundVolumeLabel>
   <KiiroSchizonepetaGum_SoundVolumeDesc>调节老吴音效的音量大小。什么？还想听得再清楚一点？</KiiroSchizonepetaGum_SoundVolumeDesc>
+  <KiiroSchizonepetaGum_OutlineLabel>开启人物描边</KiiroSchizonepetaGum_OutlineLabel>
+  <KiiroSchizonepetaGum_OutlineDesc>嚼口香糖时为人物绘制外描边。关闭可节省性能。</KiiroSchizonepetaGum_OutlineDesc>
+  <KiiroSchizonepetaGum_OutlineWidthLabel>描边宽度</KiiroSchizonepetaGum_OutlineWidthLabel>
+  <KiiroSchizonepetaGum_OutlineWidthDesc>调整描边线条的宽度。</KiiroSchizonepetaGum_OutlineWidthDesc>
+  <KiiroSchizonepetaGum_OutlineColorLabel>描边颜色</KiiroSchizonepetaGum_OutlineColorLabel>
+  <KiiroSchizonepetaGum_OutlineColorDesc>点击色块切换描边颜色。</KiiroSchizonepetaGum_OutlineColorDesc>
 
   <!-- 健康面板 tooltip 文本（CompTipStringExtra） -->
   <KiiroSchizonepetaGum_RegenRate>再生速度：{0} hp/天</KiiroSchizonepetaGum_RegenRate>

@@ -11,13 +11,15 @@ namespace KiiroSchizonepetaGum
     {
         /// <summary>
         /// 包扎质量（0-1）。等同于药品的 MedicalPotency。
+        /// 默认值见 SlowTendConfig.TendQualityDefault。
         /// </summary>
-        public float tendQuality = 0.4f;
+        public float tendQuality = SlowTendConfig.TendQualityDefault;
 
         /// <summary>
         /// 包扎质量上限（0-1）。等同于药品的 MedicalQualityMax。
+        /// 默认值见 SlowTendConfig.TendQualityMaxDefault。
         /// </summary>
-        public float tendQualityMax = 0.5f;
+        public float tendQualityMax = SlowTendConfig.TendQualityMaxDefault;
 
         /// <summary>构造函数：绑定对应的 Comp 逻辑类。</summary>
         public HediffCompProperties_SlowTend()
