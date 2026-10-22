@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- 1.7 着色器体系：GLSL 源码置于 1.7/Shaders/，由 ShaderDefRegistry 在加载时
+       扫描各加载目录下的 Shaders 文件夹并注册；不再依赖 Unity AssetBundle。
+       shaderPath（ShaderTypeDef）取最后一段 defName 后命中本 def 即直接使用源码版本。 -->
+  <ShaderDef>
+    <defName>KiiroGumOutline</defName>
+    <shaderProgram>
+      <fragmentShaderFileName>KiiroGumOutline.frag.glsl</fragmentShaderFileName>
+      <!-- 半透明混合（SrcAlpha / OneMinusSrcAlpha），描边带抗锯齿边缘 -->
+      <transparent>true</transparent>
+      <!-- 参与深度测试（被更高的建筑遮挡），但不写深度（不影响后续物体） -->
+      <depthTest>true</depthTest>
+      <depthWrite>false</depthWrite>
+      <!-- 描边层是平面 mesh，双面可见，与 1.6 的 Cull Off 一致 -->
+      <cullMode>None</cullMode>
+      <!-- 本体 Cutout 为 2900，描边取其前一档，先于本体绘制 -->
+      <renderQueue>2899</renderQueue>
+    </shaderProgram>
+  </ShaderDef>
+
+</Defs>

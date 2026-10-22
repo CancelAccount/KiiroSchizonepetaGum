@@ -25,9 +25,8 @@
 packages/
 
 # ── RimWorld mod 编译输出 ──
-# Assemblies/ 下的 DLL 是源码编译产物，可由源码重新生成，不纳入版本控制
-# 如果有第三方预编译依赖 DLL 需要保留，请用 `!Assemblies/xxx.dll` 显式取消忽略
-1.6/Assemblies/*.dll
+# Assemblies/ 下的 DLL 是 1.6 的发行产物：1.7 起游戏删除 RimWorldWin64_Data\Managed，
+# 1.6 工程已无法重建，故 dll 必须入库以保证 clone 即玩
 1.6/Assemblies/*.pdb
 1.6/Assemblies/*.xml
 
@@ -66,3 +65,10 @@ $RECYCLE.BIN/
 # ── RimWorld 运行时生成的缓存（不应出现在 mod 仓库里）──
 *.cache
 Cache/
+
+# ── 发包流水线产物 ──
+# dist/stage 为组装目录，dist/*.zip 为发布包，均可由 Tools/Build-Release.ps1 重建
+dist/
+# 调试版编译输出（与入库的发行版 dll 隔离）
+1.6/AssembliesDebug/
+1.7/AssembliesDebug/

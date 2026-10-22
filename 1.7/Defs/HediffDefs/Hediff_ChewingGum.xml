@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <!-- ================================================== -->
+  <!-- HediffDef：荆芥口香糖带来的身体状态                  -->
+  <!-- 作用：恢复伤口 hp、轻微减痛，限制移动能力并开始老吴                          -->
+  <!-- ================================================== -->
+  <HediffDef>
+    <defName>Kiiro_SchizonepetaGumHigh</defName>
+    <hediffClass>Hediff_High</hediffClass>
+    <label>schizonepeta gum</label>
+    <description>Chewing schizonepeta gum, slowly regenerating wounds and easing pain. Strange, this will make the patient stand still and emit a strange sound.</description>
+    <defaultLabelColor>(0.4,0.8,0.2)</defaultLabelColor>
+    <scenarioCanAdd>true</scenarioCanAdd>
+    <!-- 最大剂量：2.0，吃2片后拉满 -->
+    <maxSeverity>1.0</maxSeverity>
+    <isBad>false</isBad>
+    <!-- 状态消退：每天 -2，每片持续 0.25 天 -->
+    <comps>
+      <li Class="HediffCompProperties_SeverityPerDay">
+        <severityPerDay>-2</severityPerDay>
+        <showHoursToRecover>true</showHoursToRecover>
+      </li>
+      <!-- 回血效果：每天 10 hp
+           复刻原版 Anomaly regeneration 机制
+           是否修复断肢由 mod 设置界面控制 -->
+      <li Class="KiiroSchizonepetaGum.HediffCompProperties_SlowRegen">
+        <healAmountPerDay>10</healAmountPerDay>
+      </li>
+      <!-- 每 150 帧包扎一个流血伤口 -->
+      <li Class="KiiroSchizonepetaGum.HediffCompProperties_SlowTend">
+        <tendQuality>0.4</tendQuality>
+        <tendQualityMax>0.5</tendQualityMax>
+      </li>
+      <!-- 视觉特效：每300帧浮现治疗标 -->
+      <!-- 贴图：Textures/Mote/KiiroGumParticle.png -->
+      <li Class="KiiroSchizonepetaGum.HediffCompProperties_VisualEffect">
+        <particleFleckDef>Fleck_KiiroGumParticle</particleFleckDef>
+        <particleIntervalTicks>300</particleIntervalTicks>
+        <particleScale>0.8</particleScale>
+        <particleRandomOffsetX>0.5</particleRandomOffsetX>
+        <particleRandomOffsetY>0.4</particleRandomOffsetY>
+        <!-- 粒子从身体中心偏上方飘出 -->
+        <particleOffset>(0, 0.5, 0)</particleOffset>
+      </li>
+      <!-- 间歇音效：hediff 期间每 6000 帧（10s）随机播一条老吴音效
+           防重叠：现实时间 10s 内已播过则跳过，防止开超高倍速导致百基争鸣 -->
+      <li Class="KiiroSchizonepetaGum.HediffCompProperties_SoundPlayer">
+        <soundDef>Kiiro_LaoWuSound</soundDef>
+        <intervalTicks>6000</intervalTicks>
+        <soundDurationReal>10</soundDurationReal>
+        <!-- 老吴日志：每次播音效时同步往人物日志记一条 -->
+        <logEntryPack>Kiiro_Event_LaoWuScream</logEntryPack>
+        <!-- 打扰睡眠半径（格）：范围内睡觉者获得"睡眠被打扰"想法，无视墙体 -->
+        <disturbRadius>15</disturbRadius>
+        <!-- 日志条目图标（相对 Textures/，不带扩展名） -->
+        <logEntryIconPath>UI/Icons/LaoWuScream</logEntryIconPath>
+      </li>
+      <!-- 外描边：药效期间为人物绘制合成外观（身体+衣物+发型）的外描边
+           shader：AssetBundles 内 KiiroGumOutline（见 Defs/ShaderTypeDefs/KiiroGum_Outline.xml）
+           颜色/宽度可被玩家在 mod 设置中实时覆盖 -->
+      <li Class="KiiroSchizonepetaGum.HediffCompProperties_Outline">
+        <outlineColor>(0.4, 0.8, 0.2)</outlineColor>
+        <outlineWidth>2</outlineWidth>
+        <!-- 内部孔洞填充半径：发丝缝隙等细缝被填充，不产生独立描边线 -->
+        <holeRadius>1</holeRadius>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <!-- 轻微减痛 -->
+        <painFactor>0.9</painFactor>        
+        <!-- 移动能力：最大20% -->
+        <capMods>
+          <li>
+            <capacity>Moving</capacity>
+            <setMax>0.20</setMax>
+          </li>
+        </capMods>
+      </li>
+    </stages>
+  </HediffDef>
+
+</Defs>

@@ -1,0 +1,43 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <LangVersion>10</LangVersion>
+    <Nullable>disable</Nullable>
+    <AssemblyName>KiiroSchizonepetaGum</AssemblyName>
+    <RootNamespace>KiiroSchizonepetaGum</RootNamespace>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <!-- 输出目录按编译配置隔离：Release 写入仓库内的 1.7\Assemblies（供打包与 clone 即玩），
+         Debug 写入 1.7\AssembliesDebug（仅供打包调试版，避免覆盖发行版 dll） -->
+    <OutputPath Condition="'$(Configuration)' == 'Debug'">..\..\AssembliesDebug</OutputPath>
+    <OutputPath Condition="'$(Configuration)' != 'Debug'">..\..\Assemblies</OutputPath>
+    <DebugType>none</DebugType>
+    <!-- 游戏直接加载 mod dll，不生成 .deps.json -->
+    <GenerateDependencyFile>false</GenerateDependencyFile>
+    <!-- 不把 git 提交号写入 AssemblyInformationalVersion，保证同一源码产出的 dll 字节稳定 -->
+    <IncludeSourceRevisionInInformationalVersion>false</IncludeSourceRevisionInInformationalVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- 1.7 起游戏改用 CoreCLR（net10.0），程序集位于游戏根目录；
+         原先的 RimWorldWin64_Data\Managed 目录已不存在 -->
+    <Reference Include="Assembly-CSharp">
+      <HintPath>..\..\..\..\..\Assembly-CSharp.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <!-- UnityEngine 由 UnityStubs 提供（Waylith 运行时以 stub 形式模拟 Unity API） -->
+    <Reference Include="UnityStubs">
+      <HintPath>..\..\..\..\..\UnityStubs.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="RimWorld">
+      <HintPath>..\..\..\..\..\RimWorld.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <!-- 1.7 着色器注册表（ShaderRegistry.TryResolve）：用于判定 ShaderDef 对应的
+         GLSL 程序是否真正注册成功，未注册时避免每帧提交无效材质 -->
+    <Reference Include="Waylith">
+      <HintPath>..\..\..\..\..\Waylith.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+</Project>

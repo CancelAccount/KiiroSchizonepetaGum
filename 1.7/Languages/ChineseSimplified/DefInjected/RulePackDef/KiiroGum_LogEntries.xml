@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+
+  <Kiiro_Event_LaoWuScream.rulePack.rulesStrings>
+
+    <!-- ===== 主规则：随机选一条句式，组合三种占位符 ===== -->
+    <li>r_logentry->[SUBJECT_definite] [LaoWu_Modifier]地[LaoWu_Action]出 [LaoWu_Content]。</li>
+    <li>r_logentry->[LaoWu_Content]从[SUBJECT_definite]嘴里传出，开始[LaoWu_Modifier]地[LaoWu_Action]。</li>
+    <li>r_logentry->[LaoWu_Modifier]地,[SUBJECT_definite]开始[LaoWu_Content]</li>
+
+    <!-- ===== 动作（LaoWu_Action）：叫的动作 ===== -->
+    <li>LaoWu_Action->怪叫</li>
+    <li>LaoWu_Action->尖叫</li>
+    <li>LaoWu_Action->嚎叫</li>
+    <li>LaoWu_Action->鸣叫</li>
+    <li>LaoWu_Action->低吟</li>
+    <li>LaoWu_Action->哈气</li>
+
+    <!-- ===== 修饰词（LaoWu_Modifier）：形容动作的方式 ===== -->
+    <li>LaoWu_Modifier->大声</li>
+    <li>LaoWu_Modifier->突然</li>
+    <li>LaoWu_Modifier->莫名其妙</li>
+    <li>LaoWu_Modifier->撕心裂肺</li>
+    <li>LaoWu_Modifier->诡异</li>
+    <li>LaoWu_Modifier->滔滔不绝</li>
+    <li>LaoWu_Modifier->自顾自</li>
+    <li>LaoWu_Modifier->旁若无人</li>
+
+    <!-- ===== 内容（LaoWu_Content）：老吴老吴老吴老吴~~ ===== -->
+    <li>LaoWu_Content->奥~你高你高你高你高你高你~</li>
+    <li>LaoWu_Content->了了了了了了嘞了了了了了了嘞</li>
+    <li>LaoWu_Content->噢～嗷呜嗷呜嗷呜嗷呜嗷呜</li>
+    <li>LaoWu_Content->哇～袄～哇～袄～哇～袄～哇～袄～哈！</li>
+    <li>LaoWu_Content->老吴哦～老吴哦老吴老吴老吴老吴</li>
+    <li>LaoWu_Content->啊你个你个你个你个你个</li>
+
+  </Kiiro_Event_LaoWuScream.rulePack.rulesStrings>
+
+</LanguageData>

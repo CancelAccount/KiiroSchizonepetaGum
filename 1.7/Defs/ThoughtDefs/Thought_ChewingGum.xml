@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <!-- ================================================== -->
+  <!-- ThoughtDef：嚼口香糖带来的想法（situational thought）-->
+  <!-- ================================================== -->
+  <ThoughtDef>
+    <defName>Kiiro_AteSchizonepetaGum</defName>
+    <workerClass>KiiroSchizonepetaGum.ThoughtWorker_AteSchizonepetaGum</workerClass>
+    <stages>
+      <!-- stage 0：其他种族 -->
+      <li>
+        <label>chew gum</label>
+        <description>Chew chew chew...</description>
+        <baseMoodEffect>3</baseMoodEffect>
+      </li>
+      <!-- stage 1：绮罗 -->
+      <li>
+        <label>chew schizonepeta gum</label>
+        <description>Chew chew chew... it's a schizonepeta gum!</description>
+        <baseMoodEffect>8</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+</Defs>
