@@ -133,7 +133,7 @@ namespace KiiroSchizonepetaGum
                         LogFallback("PreRenderResults / PawnDrawParms 字段结构变化");
                         return;
                     }
-
+                    // 编译读取委托
                     ParameterExpression rendererParam = Expression.Parameter(typeof(PawnRenderer), "renderer");
                     Expression resultsExpr = Expression.Field(rendererParam, resultsField);
                     getValid = Expression.Lambda<Func<PawnRenderer, bool>>(

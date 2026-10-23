@@ -2,7 +2,7 @@
 
 > [← 返回总览](00-总览.md)
 > **来源**：2026-10-22 用户「创意工坊有个很热门的人物动画 mod 会让小人执行动画，我们 mod 的 shader 没跟上导致描边与本体重合不上，看看有没有办法适配」
-> **口径**：**已实施**：2026-10-23 实机验收通过（位置/旋转/帧朝向跟随动画 mod）；描边图层遮挡关系未通过，见 [§3.6](#36-决策表) D6
+> **口径**：**已实施**：2026-10-23 实机验收通过（位置/旋转/帧朝向跟随动画 mod）；2026-10-24 遮挡复验通过（`renderQueue 2901`，见 [§3.6](#36-决策表) D8）
 > **范围**：`KiiroSchizonepetaGum` 1.7 描边层的位置 / 旋转 / 帧朝向；不改着色器算法与烘焙流程
 > **关联**：着色器侧迁移见 [01-特效着色器迁移.md](01-特效着色器迁移.md)；1.6 描边算法与选型见 [Outline_技术方案.md](Outline_技术方案.md)
 
@@ -84,7 +84,7 @@ GenDraw.DrawMeshNowOrLater(mesh, bodyPos, Quaternion.AngleAxis(bodyAngle, Vector
 | 存档 | 不新增持久化字段，无 Scribe 变更 |
 | 加载序 | 对其它 mod 无加载顺序要求 |
 | 显示 | 描边跟随位移/旋转/朝向；来源链 `results` → `PawnDrawData` → `pawn.DrawPos`，实际生效的是中间一级 |
-| 遮挡 | 描边层海拔改为 `1`（本体上方），与低矮植被的前后遮挡关系仍不符合预期（未结，见 D7） |
+| 遮挡 | 描边原 `renderQueue=2899` 早于全部 2900 实体且不写深度，描边像素被随后绘制的植物无条件覆盖；已改为 `2901`，由植物先写下的深度经 `depthTest` 决定遮挡（见 D8），2026-10-24 实机验证通过 |
 | 回滚 | 删除探针类、恢复三处取值即可，不影响其它功能 |
 
 ## 3.6 决策表
@@ -97,7 +97,8 @@ GenDraw.DrawMeshNowOrLater(mesh, bodyPos, Quaternion.AngleAxis(bodyAngle, Vector
 | D4 | 是否给玩家开关 | 不新增开关：读取无副作用，失败自动回退 | ✅ 已拍板（2026-10-22） |
 | D5 | `results` 在提交绘制时恒为 `default` 怎么办 | 姿态来源改为三级链：`results`（首选）→ `AnimationDrawDataProbe`（反射读 `PawnDrawData`，复现 `GetBodyPos`/`BodyAngle`/`PreRender` 三处注入）→ `pawn.DrawPos` 兜底 | ✅ 已拍板（2026-10-23） |
 | D6 | 描边层海拔 | 由 `-8` 改为 `1`（本体上方一层，着色器已自行挖空内部）；实测遮挡关系仍未符合预期，见 D7 | ✅ 已拍板（2026-10-23） |
-| D7 | 描边与低矮植被的遮挡关系如何修 | 未定：海拔/`renderQueue`/`depthTest` 三者取舍待排查 | ⏳ 待拍板 |
+| D7 | 描边与低矮植被的遮挡关系如何修 | 未定：海拔/`renderQueue`/`depthTest` 三者取舍待排查 | 已修订（见 D8） |
+| D8 | 遮挡根因与修法 | 根因：描边 `renderQueue=2899` 早于所有 2900 实体（`Cutout`/`CutoutPlant`）且 `depthWrite=false`，植物后画即无条件覆盖描边像素（1.6 的 `AlphaTest-1` 先于本体假设在 1.7 `DrawSortKey` 模型下失效）。修法：`renderQueue` 改 `2901`，保持 `transparent=true`/`depthTest=true`/`depthWrite=false`；不开 `depthWrite` 是因挖空用 `outColor=vec4(0)` 而非 `discard`，写深度会把本体挡出破洞 | ✅ 已实施（2026-10-24） |
 
 ## 3.7 实施清单
 
@@ -111,6 +112,8 @@ GenDraw.DrawMeshNowOrLater(mesh, bodyPos, Quaternion.AngleAxis(bodyAngle, Vector
 | 6 | `KiiroGumOutlineManager` 内新增 `AnimationDrawDataProbe` | 反射解析 yayoAni 的 `PawnDrawData`，读 `posOffset`/`angleOffset`/`fixedRot`，作为 `results` 失效时的次选来源 | 装动画 mod 后描边随呼吸/走路/后坐力同步位移与倾斜 |
 | 7 | `OutlineConfig.OutlineAltitudeLayer` | `-8` → `1`，`pos.y += AltitudeForLayer(1)` | 描边不再沉到本体下方 |
 | 8 | 实机验收（2026-10-23） | 装 Yayo's Animation 验证位移/倾斜/锁定朝向 | ✅ 位移与倾斜跟随通过；❌ 与低矮植被遮挡关系不符预期（见 D7） |
+| 9 | `1.7\Defs\ShaderDefs\KiiroGum_Outline.xml` | `renderQueue` `2899` → `2901`；`transparent`/`depthTest`/`depthWrite` 不变 | 描边与本体被荆棘/草遮挡的前后关系一致 |
+| 10 | 实机验收（2026-10-24） | 观察荆棘/草前后站位下的描边 | ✅ 遮挡表现与本体一致，D8 关闭 |
 
 ## 3.8 变更日志
 
@@ -120,6 +123,8 @@ GenDraw.DrawMeshNowOrLater(mesh, bodyPos, Quaternion.AngleAxis(bodyAngle, Vector
 | 2026-10-22 | D1–D4 拍板并落地：探针类、位置/旋转/朝向取值、烘焙朝向 | 用户「进行实现」 | §3.6、§3.7 |
 | 2026-10-23 | 方案更正：`results` 在 `onBeforeRender` 阶段恒为 `default`，主路径改为 `AnimationDrawDataProbe`（D5）；描边海拔 `-8` → `1`（D6） | 源码核对 `PawnRenderer.cs#L374` + 实机错位复现 | §3.3、§3.4、§3.6、§3.7 |
 | 2026-10-23 | 实机验收：描边跟随动画（位移/倾斜/锁定朝向）通过；描边图层遮挡关系未通过，登记为 D7 | 用户「除了描边图层遮挡关系均测试通过」 | §3.6 |
+| 2026-10-24 | 遮挡根因定位并落地 D8：描边 `renderQueue` `2899` → `2901`，改由植物先写的深度决定遮挡 | 反编译 `Waylith.dll` 的 `DrawSortKey` / `DrawItemFactory` + `Shaders.Map.xml` 队列配置 | §3.5、§3.6、§3.7、§3.9 |
+| 2026-10-24 | 实机复验通过：描边与本体被荆棘/草遮挡的前后关系一致，D8 关闭 | 用户「测试正常」 | §3.5、§3.6、§3.7 |
 
 ## 3.9 证据表
 
@@ -140,3 +145,8 @@ GenDraw.DrawMeshNowOrLater(mesh, bodyPos, Quaternion.AngleAxis(bodyAngle, Vector
 | 烘焙不污染 | 同文件 `#L467-L524`（`RenderCache` 不写 `results`） |
 | 朝向结构 | `Source_Decompiled\1.7\Assembly-CSharp\Verse\PawnDrawParms.cs#L75` |
 | 目标 mod 版本 | `workshop\content\294100\2877292196\About\About.xml#L6-L11`（仅 1.3–1.6） |
+| 官方队列配置 | `Data\Core\Defs\ShaderDefs\Shaders.Map.xml#L6-L12`（`Cutout` 2900、`depthWrite=true`）、`#L176-L183`（`CutoutPlant` 2900、`depthWrite=true`） |
+| 排序键位域 | `Waylith.dll` 反编译 `Waylith.Rendering.DrawSortKey`（`renderQueue` 占 `High` 位 50-62，仅次于 transparent 位） |
+| 队列取用 | 同程序集 `DrawItemFactory`（`RenderQueueOverride > 0 ? override : binding.RenderQueue`） |
+| 排序执行 | 同程序集 `MeshBatchRenderer`（`drawScratch.Sort(DrawSortKeyComparer.Instance)`） |
+| 描边队列现值 | `1.7\Defs\ShaderDefs\KiiroGum_Outline.xml`（`renderQueue 2901`、`depthTest=true`、`depthWrite=false`） |

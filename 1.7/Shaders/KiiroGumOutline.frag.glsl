@@ -18,9 +18,13 @@
 // 传入该 pawn 帧的 uvRect 边界），防止膨胀采样越界读到图集中相邻 pawn 的帧。
 //
 // 渲染状态见 Defs/ShaderDefs/KiiroGum_Outline.xml：
-//   renderQueue 2899 = 本体 Cutout（2900）之前一档；
-//   描边层高度略高于本体（C# 侧 AltitudeForLayer(1)），遮挡关系与本体一致，
+//   renderQueue 2901 = 本体 / 植物（Cutout / CutoutPlant，2900）之后一档；
+//   植物先绘制并写深度，描边后画，由 depthTest 判定前后关系，
+//   因此描边与本体被低矮植被遮挡的表现一致。
+//   描边层高度略高于本体（C# 侧 AltitudeForLayer(1)），
 //   人物像素处由本 shader 挖空输出全透明，因此不会覆盖本体。
+//   注意：挖空用的是 outColor = vec4(0) 而非 discard，故不可开 depthWrite，
+//   否则透明片元仍写深度，会把本体挡出"破洞"。
 // ============================================================================
 
 layout(location = 1) in vec2 vUv;

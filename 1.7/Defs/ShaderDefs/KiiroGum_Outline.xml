@@ -15,8 +15,11 @@
       <depthWrite>false</depthWrite>
       <!-- 描边层是平面 mesh，双面可见，与 1.6 的 Cull Off 一致 -->
       <cullMode>None</cullMode>
-      <!-- 本体 Cutout 为 2900，描边取其前一档，先于本体绘制 -->
-      <renderQueue>2899</renderQueue>
+      <!-- 本体与植物（Cutout / CutoutPlant）均为 2900 且写深度；
+           描边必须排在其后（2901），低矮植物先写下的深度才能正确遮挡描边。
+           若取 2900 之前一档，描边会先于所有 2900 实体绘制且不写深度，
+           随后被植物像素无条件覆盖（1.6 的 AlphaTest-1 假设在 1.7 排序模型下失效）。 -->
+      <renderQueue>2901</renderQueue>
     </shaderProgram>
   </ShaderDef>
 
